@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../../css/mui/mui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+	<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		.more-app-ide{
+			position: fixed;
+			bottom: 15px;
+			left:15px;
+		}
+	</style>
+	<body class="more-setting">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">设置</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="more-set-id.html" class="mui-navigate-right">
+						账号设置
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="more-app-ide">
+			<p>运维监控云平台--客户版</p>
+			<p>当前版本: "1.1.1"</p>
+		</div>
+	
+	</body>
+	<script src="../../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mms-common.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		mui("body").on("tap", "a", function() {
+			var href = this.getAttribute("href");
+			if(~href.indexOf(".html")){
+				jump(href);
+			}
+		})
+		mui.plusReady(function(){
+			plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+				mui(".more-app-ide p")[1].innerHTML = "当前版本："+inf.version;
+			})
+		})
+	</script>
+
+</html>

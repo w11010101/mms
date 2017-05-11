@@ -1,0 +1,62 @@
+/*跨webview需要手动指定位置*/
+/*右上角菜单*/
+
+.mui-plus header.mui-bar {
+	/*display: none!important;*/
+}
+
+.mui-plus .mui-bar-nav~.mui-content {
+	padding: 0!important;
+}
+
+.mui-plus .plus {
+	display: inline;
+}
+
+.plus {
+	display: none;
+}
+
+#topPopover {
+	position: fixed;
+	top: 16px;
+	right: 6px;
+	width: 30%;
+}
+
+#topPopover .mui-popover-arrow {
+	left: auto;
+	right: 6px;
+}
+
+/*p {
+	text-indent: 22px;
+}*/
+
+span.mui-icon {
+	font-size: 14px;
+	color: #007aff;
+	margin-left: 0px;
+	padding-right: 10px;
+}
+
+.mui-content {
+	padding: 10px;
+}
+
+.mui-popover .mui-scroll-wrapper {
+	margin: 0;
+}
+.mui-popover .mui-table-view{
+	border:1px solid #ececec;
+	box-sizing: content-box;
+}
+.mui-popover .mui-popover-arrow:after{
+	border-radius: 1px;
+}
+.mui-popover .mui-table-view,.mui-popover .mui-popover-arrow:after{
+	background: #f4f4f4;
+}
+.mui-popover{
+	height:303px;height:261px;
+}

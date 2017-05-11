@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>服务进度</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../../../css/plugin/imageviewer.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/ser-progress.css" />
+		<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		.mui-loading {
+			margin-top: 50%;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">服务进度</h1>
+
+		</header>
+		<h2 class="title-name"></h2>
+		<div class="mui-content mui-row mui-fullscreen">
+
+			<div id="segmentedControlContents" class="mui-col-xs-9 service-list" style="border-right: 1px solid #c8c7cc;">
+			</div>
+
+			<div class="mui-col-xs-3">
+				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical progress-list">
+				</div>
+			</div>
+
+		</div>
+		<script src="../../../js/mui/mui.min.js"></script>
+		<script src="../../../js/mui/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mui/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mui/mui.lazyload.js"></script>
+		<script src="../../../js/mui/mui.lazyload.img.js"></script>
+		<script src="../../../js/mms-common.js"></script>
+		<script src="../../../js/mms-down-img.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			mui.previewImage();
+			var passval_id;
+			mui.plusReady(function() {
+
+				var value = plus.webview.currentWebview();
+				var urls = mmsappurl.service.process;
+				var datas = {
+					id: value.passval_id
+				}
+				passval_id = value.passval_id;
+				queryElement("body").setAttribute('ser_id', passval_id);
+				mui("body").on("tap", ".title-name", function() {
+					jump("ser-info.html", {
+						passval_id: value.passval_id
+					});
+				});
+				
+
+				getAjax(urls, datas,success_process);
+				
+			});
+			var progressObj = {
+				controls: queryElement("#segmentedControls"),
+				contents: queryElement("#segmentedControlContents"),
+				titleName: queryElement(".title-name"),
+			}
+
+
+			var html = [];
+			var i = 1,
+				j = 1,
+				m = 12, //左侧选项卡数量+1
+				n = 10; //每个选项卡列表数量+1
+			var end = false;
+			
+			progressObj.contents.innerHTML = html.join('');
+			function success_process(data) {
+				// 标题
+				progressObj.titleName.innerHTML = data.data.name;
+				var data = data.data;
+				// 右侧按钮
+				for(; i < m; i++) {
+					if(data.menu[i - 1].operated) {
+						html.push('<a class="mui-control-item" data-index="' + (i - 1) + '" href="#content' + i + '"><i></i>' + data.menu[i - 1].name + '</a>');
+					} else {
+						html.push('<a class="mui-control-item cannot" data-index="' + (i - 1) + '" href="#content' + i + '"><i></i>' + data.menu[i - 1].name + '</a>');
+					}
+				}
+				
+				progressObj.controls.innerHTML = html.join('');
+				queryElement(".mui-control-item").classList.add("mui-active");
+				//左侧内容
+				html = [];
+
+				for(i = 1; i < m; i++) {
+					html.push('<div id="content' + i + '" class="mui-control-content"><ul class="mui-table-view"></ul></div>');
+				}
+			
+				progressObj.contents.innerHTML = html.join('');
+
+				// 添加左侧内容
+				progress_title(data.details);
+				// 判断添加补充说明
+				if(data.state != 64) {
+					var createS = createElement("div");
+					createS.setAttribute("id", "supplement");
+					var createTS = createElement("a");
+					createS.innerHTML = '<a href="task-supplement.html" open-type="common"><img src="../img/icon15.png" alt=""> 补充说明</a>'
+					document.querySelector(".mui-col-xs-3").appendChild(createS);
+				}
+
+				mui("body").on("tap", "#supplement", function() {
+					var ser_parameter = {
+						service_title: mui(".title-name")[0].innerHTML,
+						service_id: document.querySelector("body").getAttribute('ser_id')
+					}
+					jump("ser-illustrate.html", ser_parameter);
+				})
+			}
+
+			// 添加步骤
+
+			function progress_title(argument) {
+				var i = 0;
+				var first = true;
+				for(var x = 0; x < argument.length; x++) {
+					switch(argument[x].mstate) {
+						case 2:
+							i = argument[x].mdtype == 0?0:1;
+							break;
+						case 4:
+							i = argument[x].mdtype == 0?2:3;
+							break;
+						case 8:
+							i = argument[x].mdtype == 0?4:5;
+							break;
+						case 16:
+							i = argument[x].mdtype == 0?first == true?6:9:first == true?7:9;
+							break;
+						case 32:
+							i = argument[x].mdtype == 0?first == true?8:9:9;
+							first = false;
+							break;
+						case 64:
+							i = 10;
+							break;
+						default:
+							break;
+					}
+					
+					mui(".mui-control-content")[i].children[0].appendChild(judge_mdtype(argument[x]));
+				}
+				end = true;
+			}
+
+			function judge_mdtype(data) {
+				var createLi = createElement("li");
+
+				if(data.mdtype == 0) {
+					createLi.classList.add("mui-table-view-cell","progress-title");
+					createLi.innerHTML = '<h3>步骤详细信息区——' + judge_step(data.mstate) + '</h3><p>' + (data.content||"") + '</p>' +add_img_dom(data);
+				} else {
+					createLi.classList.add("mui-table-view-cell","progress-note");
+					html.push('<li class="mui-table-view-cell progress-note"><h3>补充说明信息区</h3><p>' + (data.content||"") +  '</p>'+ add_img_dom(data)+'</li>');
+					createLi.innerHTML = '<h3>补充说明信息区</h3><p>' + data.content + '</p>' + add_img_dom(data);
+				}
+				return createLi;
+			}
+
+			function judge_step(step) {
+				var step_name = ""
+				switch(step) {
+					case 2:
+						step_name = "申请";
+						break;
+					case 4:
+						step_name = "受理";
+						break;
+					case 8:
+						step_name = "安排任务";
+						break;
+					case 16:
+						step_name = "执行中";
+						break;
+					case 32:
+						step_name = "待确认";
+						break;
+					case 64:
+						step_name = "完成";
+						break;
+					default:
+						break;
+				}
+				return step_name;
+			}
+			// 每隔一秒判断是否加载完成
+			var endType = setInterval(function() {
+				if(end) {
+					
+					mui.each(mui(".thumb_img"), function(i, e) {
+						var file_name = [e.getAttribute("file_name")];
+						e.setAttribute("src", down_imgs(thumb_name(file_name)));
+					})
+					tap_imgs_preview();
+					clearInterval(endType);
+					progress_active();
+				}
+			}, 1000);
+			// 获取 base64码 并加到img中   return 压缩的图片
+			function add_img_dom(obj) {
+				var img_dom = "";
+				if(obj.img_urls != null) {
+					var get_img = obj.img_urls.split("|");
+					img_dom += '<div class="progress-note-imgs" >';
+					for(var i = 0; i < get_img.length; i++) {
+						img_dom += '<div><img src="../../../img/5.png" alt="" file_name="' + get_img[i] + '" class="thumb_img"></div>';
+					}
+					img_dom += '</div>';
+				}
+				return img_dom;
+			}
+			function progress_active() {
+				var controlsElem = document.getElementById("segmentedControls");
+				var contentsElem = document.getElementById("segmentedControlContents");
+				var controlListElem = controlsElem.querySelectorAll('.mui-control-item');
+				var contentListElem = contentsElem.querySelectorAll('.mui-control-content');
+				var controlWrapperElem = controlsElem.parentNode;
+				var controlWrapperHeight = controlWrapperElem.offsetHeight;
+				var controlMaxScroll = controlWrapperElem.scrollHeight - controlWrapperHeight;//右侧类别最大可滚动高度
+				var maxScroll = contentsElem.scrollHeight - contentsElem.offsetHeight;//左侧内容最大可滚动高度
+				var controlHeight = controlListElem[0].offsetHeight;//右侧类别每一项的高度
+				var controlTops = []; //存储control的scrollTop值
+				var contentTops = [0]; //存储content的scrollTop值
+				var length = contentListElem.length;
+				
+				for (var i = 0; i < length; i++) {
+					controlTops.push(controlListElem[i].offsetTop + controlHeight);
+				}
+				
+				for (var i = 1; i < length; i++) {
+					var offsetTop = contentListElem[i].offsetTop;
+					
+					if (offsetTop + 100 >= maxScroll) {
+						var height = Math.max(offsetTop + 100 - maxScroll, 100);
+						var totalHeight = 0;
+						var heights = [];
+						for (var j = i; j < length; j++) {
+							var offsetHeight = contentListElem[j].offsetHeight;
+							totalHeight += offsetHeight;
+							heights.push(totalHeight);
+						}
+						for (var m = 0, len = heights.length; m < len; m++) {
+							contentTops.push(parseInt(maxScroll - (height - heights[m] / totalHeight * height)));
+						}
+						break;
+					} else {
+						contentTops.push(parseInt(offsetTop));
+					}
+				}
+				
+				contentsElem.addEventListener('scroll', function() {
+					var scrollTop = contentsElem.scrollTop;
+					for (var i = 0; i < length; i++) {
+						var offsetTop = contentTops[i];
+						var offset = Math.abs(offsetTop - scrollTop);
+						if (scrollTop < offsetTop) {
+							if (scrollTop >= maxScroll) {
+								onScroll(length - 1);
+							} else {
+								onScroll(i - 1);
+							}
+							break;
+						} else if (offset < 20) {
+							onScroll(i);
+							break;
+						}else if(scrollTop >= maxScroll){
+							onScroll(length - 1);
+							break;
+						}
+					}
+				});
+				var lastIndex = 0;
+				//监听content滚动
+				var onScroll = function(index) {
+					if (lastIndex !== index) {
+						lastIndex = index;
+						var lastActiveElem = controlsElem.querySelector('.mui-active');
+						lastActiveElem && (lastActiveElem.classList.remove('mui-active'));
+						var currentElem = controlsElem.querySelector('.mui-control-item:nth-child(' + (index + 1) + ')');
+						currentElem.classList.add('mui-active');
+						//简单处理左侧分类滚动，要么滚动到底，要么滚动到顶
+						var controlScrollTop = controlWrapperElem.scrollTop;
+						if (controlScrollTop + controlWrapperHeight < controlTops[index]) {
+							controlWrapperElem.scrollTop = controlMaxScroll;
+						} else if (controlScrollTop > controlTops[index] - controlHeight) {
+							controlWrapperElem.scrollTop = 0;
+						}
+					}
+				};
+				//滚动到指定content
+				var scrollTo = function(index) {
+					contentsElem.scrollTop = contentTops[index];
+					
+				};
+				mui(controlsElem).on('tap', '.mui-control-item', function(e) {
+					mui.each(mui('.mui-control-item'),function (i,e) {
+						e.classList.remove("mui-active");
+					})
+					this.classList.add("mui-active");
+					scrollTo(this.getAttribute('data-index'));
+					return false;
+				});
+			}
+			// 点击图片预览
+			var numbers = 0;
+
+			function tap_imgs_preview() {
+				mui("body").on("tap", ".thumb_img", function() {
+					var fileNameArr = new Array();
+					fileNameArr[fileNameArr.length] = this.getAttribute("file_name");
+					var img_src = down_imgs(fileNameArr);
+					var createImg = createElement("img");
+					createImg.setAttribute("src", img_src);
+					createImg.setAttribute("data-preview-src", "");
+					createImg.setAttribute("data-preview-group", "1");
+					createImg.classList.add("preview_img");
+					this.parentElement.appendChild(createImg);
+					mui.toast('原图加载完成，请点击查看');
+				});
+
+			}
+		</script>
+	</body>
+
+</html>

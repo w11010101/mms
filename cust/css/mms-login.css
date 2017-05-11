@@ -1,0 +1,249 @@
+html,
+body {
+	/*height: 100%;*/
+	background: #fff;
+ 	-moz-user-select: none; 
+}
+*{
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	-o-user-select:none;
+	font-style: normal;
+}
+.mui-input-group:before{
+	height:0px
+}
+#checkedcode {
+	width: 40%;
+	height: 40px;
+	padding: 0;
+	margin: 9px 10% 9px 0;
+	display: none;
+}
+#getcheckedcode {
+	float: right;
+	/*background: #3474B1;*/
+	width: 35%;
+	height: 30px;
+	line-height: 30px;
+	/*color: #fff;*/
+	color:#3474B1;
+	font-size: 14px;
+	padding: 0;
+	margin: 9px 0;
+	text-align: center;
+	border:1px solid #3474B1;
+	border-radius: 5px;
+	display: none;
+	transition: all .1s ease-in;
+}
+button{
+	-webkit-touch-callout:none!important;
+	touch-callout:none!important;
+	-webkit-user-select:none!important;
+	-khtml-user-select:none!important;
+	-moz-user-select:none!important;
+	-ms-user-select:none!important;
+	user-select:none!important;
+	-o-user-select:none!important;
+}
+/*#getcheckedcode:active{
+	background: #3474B1;
+	color:#fff;
+	
+}*/
+#login:active {
+	opacity: 0.5;
+}
+
+
+.logo {
+	display: block;
+	width: 6.5rem;
+	margin: 0rem auto 1.5rem auto;
+}
+
+
+/* css 样式修改*/
+
+.log-cloud {
+	background: #fff;
+	height: 100%;
+	overflow: hidden;
+	padding: 4rem 2rem 0;
+	-webkit-box-sizing: padding-box;
+	box-sizing: padding-box;
+	clear: both;
+}
+
+.log-cloud-img {
+	display: block;
+	width: 6.5rem;
+	margin: 0rem auto 1.5rem auto;
+}
+
+.log-cloud h1 {
+	font-size: 1.2rem;
+	text-align: center;
+	color: #3474B1;
+	font-family: indexH1;
+}
+
+.log-cloud h1+ p {
+	color: #D8232A;
+	font-size: 1.3rem;
+	font-weight: 500;
+	margin: 1rem 0 0 0;
+	line-height: 180%;
+	text-align: center;
+}
+
+.login-form {
+	margin: 1.5rem auto;
+	width: 90%;
+}
+
+.login-form.mui-input-group .mui-input-row,
+.login-form input[type='text'],
+.login-form input[type='password'] {
+	height: 48px;
+}
+
+.mui-input-row .label-media {
+	width: 15%;
+	padding-left: 0;
+	position: relative;
+}
+
+.mui-input-row .label-media~ input,
+.mui-input-row .label-media~ select,
+.mui-input-row .label-media~ textarea {
+	width: 85%
+}
+
+
+.login-form.mui-input-group .mui-input-row:after {
+	left: 0;
+}
+
+.mui-input-row .label-media {
+	width: 15%;
+	padding-left: 0;
+	position: relative;
+}
+
+.mui-input-row .label-media:after {
+	position: absolute;
+	top: 10px;
+	bottom: 14px;
+	right: 10px;
+	background: #c8c7cc;
+	width: 1px!important;
+	content: ''!important;
+	-webkit-transform: scaleX(.5)!important;
+	transform: scaleX(.5)!important;
+}
+
+[class*="icon-input-"],
+.log-icon-arr {
+	font-size: 24px;
+	position: relative;
+	padding: 0;
+	width: 28px;
+	height: 28px;
+	background-repeat: no-repeat;
+	background: url(../img/svg/icon-login.svg);
+}
+
+.icon-input-ps {
+	background-position: 0 -38px;
+}
+
+.mui-btn-block {
+	padding: 10px 0;
+}
+
+.mui-btn-primary {
+	border: 1px solid #00AF25;
+    background-color: #00AF25;
+	width: 90%;
+	margin: 0 auto;
+	padding: 8px 0;
+}
+.log-cloud{
+	text-align: center;
+}
+.log-cloud p {
+	font-size: 1rem;
+	/*line-height: 180%;*/
+	color: #000;
+	text-align: center;
+	
+}
+.log-cloud p:first-child{
+	color:#2654A5;
+	margin-top:2rem ;
+	display: inline-block;
+	
+}
+.log-cloud .log-link-area{
+	margin: 10px 0 0 0;
+}
+.log-cloud .log-link-area a {
+	color: #2654A5;
+	margin: 0 5px;
+}
+
+.log-cloud p * {
+	vertical-align: middle;
+}
+
+[class*="icon-"] {
+	position: relative;
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.log-icon-arr {
+	background-position: 0 -76px;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.log-cloud p:last-child {
+	margin-top: 2.5rem;
+}
+
+.log-password-hide p:last-child em {
+	display: none!important;
+}
+
+.log-password-hide input[type=button],
+.log-password-hide input[type=number] {
+	display: block!important;
+}
+
+.log-password-hide .log-icon-arr {
+	transform: rotate(180deg);
+}
+.log-password-hide p:first-child{
+	display: none;
+}
+.forget-show,
+.forget-show+ span {
+	display: none!important;
+}
+
+.forget-show+span~ input {
+	display: block!important;
+}
+#password,.mui-icon-eye{
+	/*display: none;*/
+}
+#getcheckedcode,#checkedcode{
+	/*display: block;*/
+}

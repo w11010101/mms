@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>报修单repair</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/plugin/imageviewer.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-upload.css" />
+		<script src="../../../js/mms-word-limit.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.coustom-2 {
+			width: 50%;
+		}
+	</style>
+
+	<body class="ser-submit">
+
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title"></h1>
+			<button class="mui-btn mui-btn-link mui-pull-right ser-submit-btn">提交</button>
+		</header>
+		<div class="mui-content ">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll mui-control-item-2">
+						<a class="mui-control-item mui-active" href="#item1mobile">系统</a>
+						<a class="mui-control-item" href="#item2mobile">设备</a>
+					</div>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4 coustom-2"></div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div class="mui-input-group">
+							<div class="mui-input-row">
+								<span class="mui-navigate-right">
+									<label>系统名称：</label>
+									<input type="text" placeholder="请输入，最多输入20个文字" class="ser-text" value="" maxlength="20">
+								</span>
+							</div>
+							<h5>描述：<span class="tips_wordLimit"></span></h5>
+							<div class="mui-input-row ser-textarea">
+								<textarea id="" rows="4" placeholder="请填写描述内容,最多输入1000个文字" oninput="ser_wordLimit(this,'submit');" maxlength="1000"></textarea>
+								<div class="uploadimg">
+									<ul class="device-img ">
+										
+										<li class="upload-exception"><span class="upload-box"></span></li>
+										<li class="pre-text upload-exception">添加图片...</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-input-group">
+							<div class="mui-input-row">
+								<label>设备名称：</label>
+
+								<input id="" type="text" class="mui-input-clear mui-input ser-text" value="" placeholder="请输入，最多输入20个文字" maxlength="20">
+							</div>
+							<h5>描述：<span class="tips_wordLimit"></span></h5>
+							<div class="mui-input-row ser-textarea">
+								<textarea id="" rows="4" placeholder="请填写描述内容,最多输入1000个文字" oninput="ser_wordLimit(this,'submit');" maxlength="1000"></textarea>
+								<div class="uploadimg">
+									<ul class="device-img">
+
+										<li class="upload-exception"><span class="upload-box"></span></li>
+										<li class="pre-text upload-exception">添加图片...</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- mask layer 遮罩层 -->
+		<div class="mask-layer">
+			<div class="mui-loading">
+				<div class="mui-spinner ">
+				</div>
+			</div>
+		</div>
+		<div id="mask-box" class="mask-box mask-box-hide">
+			<div class="mask-content">
+				<h3>选择操作<a class="icon-close"></a></h3>
+				<button onclick="photo()">拍照</button>
+				<button onclick="galleryImgs()">选择多张图片</button>
+			</div>
+		</div>
+
+	</body>
+
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script src="../../../js/mui/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mui/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script src="../../../js/mms-down-img.js"></script>
+	<script src="../../../js/mms-upload-photo.js"></script>
+	<script src="../../../js/mms-upload.js"></script>
+	<script src="../js/service.js"></script>
+	<script>
+		//图片浏览
+		//服务类型
+		if(localStorage.getItem("draft") == 1) {
+			mui(".mui-control-item")[0].classList.remove("mui-active");
+			mui(".mui-control-item")[1].classList.add("mui-active");
+			mui("#item1mobile")[0].classList.remove('mui-active');
+			mui("#item2mobile")[0].classList.add("mui-active");
+		}
+
+		mui.previewImage();
+
+		document.querySelector("input").addEventListener("keydown", function(e) {
+			if(13 == e.keyCode) {
+				
+				return false;
+			}
+		}, false);
+		var ser_task_id = false;
+		mui.plusReady(function() {
+			var value = plus.webview.currentWebview();
+			var id = value.thisID;
+			var mtype = value.mtype;
+			var page_name = value.page_name;
+			ser_task_id = id;
+			if(id) {
+				ser_query_draft(id);
+
+			} else {
+				//				var page_name = value.page_name;
+				//				mui(".mui-title")[0].innerHTML = page_name;
+			}
+			mui(".mui-title")[0].innerHTML = page_name;
+
+			// 返回按钮 触发保存草稿
+			mui.back = function() {
+
+				ser_upload_task("draft");
+			}
+			// 提交按钮 触发提交
+			mui("header").on("tap", ".ser-submit-btn", function() {
+
+				ser_upload_task("submit");
+			})
+		})
+
+		function ser_upload_task(type) {
+			mui.each(mui("textarea,input[type=text]"), function(i, e) {
+				e.blur();
+			})
+			var btnArray = ['确认', '取消'];
+			var judge_state = judgeText();
+			if(judge_state.judge) {
+				mui.confirm(type == "draft" ? '是否保存成草稿？' : "是否提交？", '运维云平台', btnArray, function(e) {
+					if(e.index == 0) {
+						//确定
+						queryElement(".mask-layer").style.display = "block";
+						getImg = mui(".imgs_boxs");
+						serCommonUploadJudge(findImg(getImg), suffix_img(getImg), type == "draft" ? "serSaveDraft" : "serSubmit");
+					} else {
+						//取消
+						old_back();
+					}
+				});
+			} else {
+				if(type == "draft") {
+					old_back();
+				} else {
+					mui.toast(judge_state.tips + "不能为空！");
+				}
+			}
+
+		}
+		//查找草稿箱详情
+		function ser_query_draft(draft_id) {
+			var urls = mmsappurl.service.mission;
+			var datas = {
+				id: draft_id
+			}
+			getAjax(urls, datas, ser_query_draft_success, fail_callback);
+
+			function ser_query_draft_success(data) {
+				var getData = data.data;
+				if(data.errcode == 0) {
+					mui(".mui-active input[type=text]")[0].value = getData.target_name;
+					mui(".mui-active textarea")[0].value = getData.description;
+					if(getData.img_urls != null) {
+						var img_arr = getData.img_urls.split("|");
+						var img_base_arr = down_imgs(img_arr);
+						for(var x = 0; x < img_base_arr.length; x++) {
+							var createLi = document.createElement("li");
+							createLi.classList.add("imgs_boxs");
+							createLi.innerHTML = '<span><img src="' + img_base_arr[x] + '" alt="" data-preview-src="" data-preview-group="1"></span><i class="del"></i>';
+							mui(".mui-active .device-img")[0].insertBefore(createLi, mui(".mui-active .upload-exception")[0]); //insertBefore
+						}
+					}
+				} else {
+					
+				}
+			}
+		}
+
+	</script>
+
+</html>

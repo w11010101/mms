@@ -1,0 +1,73 @@
+.mui-scroll-wrapper{
+	top:50px;
+}
+
+li span {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+    margin: 0 10px 0 0;
+    position: relative;
+    z-index: 999;
+}
+.msg-checks-active{
+	content: "";
+	/*position: absolute;*/
+	width: 18px;
+	height: 18px;
+	/*top: 1px;
+	left: 1px;*/
+	background: #0A569D;
+}
+.msg-checks-halfActive:after {
+	content: "";
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	top: 0px;
+	left: 0px;
+	background: -webkit-linear-gradient(45deg, #0A569D 50%, #fff 50%);
+	/* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(45deg, #0A569D 50%, #fff 50%);
+	/* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(45deg, #0A569D 50%, #fff 50%);
+	/* Firefox 3.6 - 15 */
+	background: linear-gradient(45deg, #0A569D 50%, #fff 50%);
+	/* 标准的语法 */
+}
+.mui-table-view-cell>a:not(.mui-btn){
+    margin-top: -32px;
+    text-indent: 30px;
+}
+.mui-table-view-cell.mui-collapse.mui-active .mui-collapse-content,
+.mui-table-view-cell.mui-collapse.mui-active .mui-table-view {
+	display: none;
+}
+
+.mail-list .mui-table-view-cell>a:not(.mui-btn) {
+	margin-top: -32px;
+	text-indent: 30px;
+}
+
+.mail-list .mui-table-view .mui-table-view .mui-table-view-cell> a:not(.mui-btn) {
+	margin-top: -32px;
+}
+
+.mui-table-view-cell.mui-collapse.mui-active>.mui-navigate-right:after,
+.mui-table-view-cell.mui-collapse.mui-active>.mui-push-right:after {
+	content: '\e581';
+}
+.mui-table-view {
+	margin-top: .8rem;
+}
+.msg-mailList-active{
+	padding:11px 10px;
+}
+.mui-table-view-cell.mui-collapse.mui-active{
+	margin-top: 0;
+}
+.mui-table-view-cell.mui-collapse .mui-table-view .mui-table-view-cell:last-child:after, .mui-table-view-cell.mui-collapse .mui-table-view:after, .mui-table-view-cell.mui-collapse .mui-table-view:before{
+	height: 1px;;
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../css/mms-common.css">
+		<link rel="stylesheet" type="text/css" href="../css/msg-main.css"/>
+	</head>
+	<body class="msg-info">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">公告详情</h1>
+		</header>
+		<div class="mui-content">
+			<div id="main_info" class="mui-page">
+				
+
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media media-litter">
+						<img class="mui-media-object mui-pull-left" src="../img/icon16.png">
+					</li>
+				</ul>
+				<div class="main-info-content">
+					<h5>主要内容</h5>
+					<p></p>
+				</div>
+			</div>
+		</div>
+		<script src="../../../js/mui/mui.min.js"></script>
+		<script src="../../../js/mms-common.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				var value = plus.webview.currentWebview();
+				var urls = mmsappurl.msg.noticeInfo;
+				var datas = {
+					id: value.msg_info_id
+				}
+				getAjax(urls, datas, messages_details_success, fail_callback);
+			
+				function messages_details_success(data) {
+					var data = data.data;
+					var createDiv = document.createElement("div");
+					createDiv.classList.add("mui-media-body");
+					createDiv.innerHTML = data.title;
+					var createSpan = document.createElement("span");
+					createSpan.innerHTML = get_date(data.reg_time);
+					createDiv.appendChild(createSpan);
+					mui(".media-litter")[0].appendChild(createDiv);
+					mui(".main-info-content p")[0].innerHTML = data.content;
+				}
+			})
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,554 @@
+{
+	"guide.html": {
+		"resources": [
+			"img/guide/guide_3.png",
+			"js/mms-guide.js",
+			"js/plugin/encrypt/sha1.js",
+			"css/mms-guide.css",
+			"js/mms-common-link.js",
+			"img/guide/guide_2.png",
+			"js/plugin/encrypt/guid.js",
+			"js/mms-common.js",
+			"js/plugin/encrypt/md5.js",
+			"js/mui/mui.min.js",
+			"js/plugin/encrypt/mac.js",
+			"js/mms-webSocket.js",
+			"img/guide/guide.jpg",
+			"js/plugin/encrypt/des.js",
+			"css/mui/mui.min.css",
+			"js/plugin/cas/client.js",
+			"img/guide/guide_1.png",
+			"js/plugin/encrypt/base64.js"
+		],
+		"refer": [
+			"login.html",
+			"html/msg/html/msg.html",
+			"html/msg/html/msg-chat.html"
+		]
+	},
+	"login.html": {
+		"resources": [
+			"js/mms-guide.js",
+			"js/mms-common-link.js",
+			"img/logo-header.png",
+			"js/plugin/encrypt/sha1.js",
+			"js/plugin/encrypt/guid.js",
+			"js/mms-common.js",
+			"js/plugin/encrypt/md5.js",
+			"js/mms-login.js",
+			"js/mui/mui.min.js",
+			"js/plugin/encrypt/mac.js",
+			"img/svg/icon-login.svg",
+			"css/mms-login.css",
+			"js/mms-webSocket.js",
+			"js/mms-common-back.js",
+			"css/fonts/mui.ttf",
+			"js/plugin/encrypt/des.js",
+			"css/mui/mui.min.css",
+			"js/plugin/cas/client.js",
+			"js/plugin/encrypt/base64.js"
+		],
+		"refer": [
+			"html/msg/html/msg.html",
+			"reg-prompt.html",
+			"html/msg/html/msg-chat.html"
+		]
+	},
+	"html/msg/html/msg.html": {
+		"resources": [
+			"js/mui/mui.previewimage.js",
+			"img/svg/icon-bar-tab.svg",
+			"js/mui/mui.pullToRefresh.js",
+			"img/svg/icon-bar-sector.svg",
+			"js/mui/mui.zoom.js",
+			"js/mms-common-link.js",
+			"html/msg/js/msg-check.js",
+			"html/msg/js/msg-main.js",
+			"js/mui/mui.pullToRefresh.material.js",
+			"js/mms-nav.js",
+			"js/mms-common.js",
+			"img/svg/icon-plus.svg",
+			"js/mui/mui.min.js",
+			"html/msg/img/icon2.png",
+			"js/mui/mui.lazyload.img.js",
+			"html/msg/css/msg-check.css",
+			"js/mms-common-back.js",
+			"html/msg/css/msg-main.css",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"js/mui/mui.lazyload.js",
+			"js/mui/mui.view.js",
+			"css/mui/mui.min.css",
+			"html/msg/img/icon16.png",
+			"js/mms-webSocket.js",
+			"img/1.gif",
+			"img/nothing.png",
+			"html/msg/img/icon1.png",
+			"html/msg/img/icon3.png",
+			"html/msg/img/icon4.png"
+		],
+		"refer": [
+			"html/service/html/service.html",
+			"html/statistic/html/statistic.html",
+			"html/msg/html/msg-chat.html",
+			"html/msg/html/msg-info.html",
+			"html/more/html/more.html",
+			"plugin/html/pullrefresh_main.html",
+			"html/service/html/ser-submit.html",
+			"html/msg/html/msg-session.html"
+		]
+	},
+	"html/service/html/service.html": {
+		"resources": [
+			"html/service/img/icon7.png",
+			"js/mui/mui.previewimage.js",
+			"js/mui/mui.pullToRefresh.js",
+			"js/mms-common-link.js",
+			"js/mui/mui.zoom.js",
+			"html/service/js/service.js",
+			"html/service/img/priority-01.png",
+			"js/mui/mui.pullToRefresh.material.js",
+			"js/mms-nav.js",
+			"js/mms-common.js",
+			"html/service/img/icon5.png",
+			"js/mui/mui.min.js",
+			"html/service/css/service.css",
+			"js/mui/mui.lazyload.img.js",
+			"html/service/img/svg/icon-bar-nav.svg",
+			"html/service/css/top-popover-li.css",
+			"html/service/img/icon6.png",
+			"js/mms-common-back.js",
+			"css/mms-common.css",
+			"js/mui/mui.lazyload.js",
+			"css/mui/mui.min.css",
+			"img/svg/icon-bar-tab.svg",
+			"img/svg/icon-bar-sector.svg",
+			"img/svg/icon-plus.svg",
+			"html/service/img/icon9.png",
+			"html/service/img/icon10.png",
+			"html/service/html/ser-finish.html",
+			"html/service/img/icon8.png"
+		],
+		"refer": [
+			"html/msg/html/msg-chat.html",
+			"html/statistic/html/statistic.html",
+			"html/service/html/ser-progress.html",
+			"html/service/html/ser-finish.html",
+			"html/more/html/more.html",
+			"plugin/html/search.html",
+			"html/service/html/ser-submit.html",
+			"plugin/html/pullrefresh_main.html",
+			"html/msg/html/msg-session.html",
+			"html/msg/html/msg.html"
+		]
+	},
+	"html/msg/html/msg-chat.html": {
+		"resources": [
+			"js/mui/mui.previewimage.js",
+			"html/msg/img/super-man.jpg",
+			"html/msg/img/icon17.png",
+			"html/msg/css/msg-chat.css",
+			"js/mui/mui.pullToRefresh.js",
+			"js/mui/mui.zoom.js",
+			"css/plugin/imageviewer.css",
+			"html/msg/img/svg/icon-camera2.svg",
+			"js/mui/mui.pullToRefresh.material.js",
+			"js/mms-upload-photo.js",
+			"js/mms-down-img.js",
+			"html/msg/img/qiaoba.jpg",
+			"html/msg/js/msg-chat.js",
+			"html/msg/img/icon18.png",
+			"html/msg/img/icon_group.png",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"js/mms-common-link.js",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"css/fonts/mui.ttf"
+		],
+		"refer": [
+			"html/msg/html/msg-chat-person.html"
+		]
+	},
+	"html/statistic/html/statistic.html": {
+		"resources": [
+			"js/mms-common-link.js",
+			"html/statistic/css/statistic.css",
+			"js/mms-nav.js",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"html/statistic/img/list-img-3.png",
+			"html/statistic/img/list-img-4.png",
+			"html/statistic/js/statistic.js",
+			"html/statistic/img/list-img-1.png",
+			"js/mms-common-back.js",
+			"css/mms-common.css",
+			"html/statistic/img/list-img-2.png",
+			"css/mui/mui.min.css",
+			"img/svg/icon-bar-tab.svg",
+			"img/svg/icon-bar-sector.svg",
+			"img/svg/icon-plus.svg"
+		],
+		"refer": [
+			"html/msg/html/msg-chat.html",
+			"html/more/html/more.html",
+			"plugin/html/pullrefresh_main.html",
+			"html/service/html/service.html",
+			"html/service/html/ser-submit.html",
+			"html/msg/html/msg.html"
+		]
+	},
+	"html/more/html/more.html": {
+		"resources": [
+			"html/more/img/more-icon-01.png",
+			"img/svg/icon-bar-tab.svg",
+			"img/svg/icon-bar-sector.svg",
+			"js/mms-common-link.js",
+			"html/more/img/more-icon-02.png",
+			"html/more/img/chat_group.png",
+			"js/mms-nav.js",
+			"js/mms-common.js",
+			"img/svg/icon-plus.svg",
+			"js/mui/mui.min.js",
+			"html/more/img/more-icon-06.png",
+			"js/mms-common-back.js",
+			"html/more/js/more.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"html/more/css/more.css",
+			"html/more/html/more-tab.html",
+			"html/more/img/more-icon-03.png",
+			"html/more/img/more-icon-04.png",
+			"html/more/img/more-icon-05.png"
+		],
+		"refer": [
+			"html/service/html/service.html",
+			"html/more/html/more-setting.html",
+			"plugin/html/pullrefresh_main.html",
+			"html/more/html/more_down_list.html",
+			"html/more/html/more-tab.html",
+			"html/msg/html/msg-chat.html",
+			"html/msg/html/msg-session.html",
+			"html/msg/html/msg.html",
+			"html/statistic/html/statistic.html"
+		]
+	},
+	"html/more/html/more-setting.html": {
+		"resources": [
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"js/mms-common-link.js",
+			"css/fonts/mui.ttf"
+		],
+		"refer": [
+			"html/more/html/more-set-id.html"
+		]
+	},
+	"html/service/html/ser-progress.html": {
+		"resources": [
+			"html/service/img/icon15.png",
+			"html/service/css/ser-progress.css",
+			"css/plugin/imageviewer.css",
+			"html/service/img/svg/step.svg",
+			"js/mms-down-img.js",
+			"js/mui/mui.previewimage.js",
+			"js/mms-common-link.js",
+			"js/mui/mui.zoom.js",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"js/mui/mui.lazyload.img.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"js/mui/mui.lazyload.js",
+			"css/mui/mui.min.css",
+			"html/service/img/icon14.png"
+		],
+		"refer": [
+			"html/service/html/ser-illustrate.html",
+			"html/service/html/ser-info.html"
+		]
+	},
+	"plugin/html/pullrefresh_sub.html": {
+		"resources": [
+			"html/msg/img/icon16.png",
+			"js/mms-time.js",
+			"html/service/css/service.css",
+			"css/pull-more.css",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"js/mms-pull-list.js",
+			"js/mms-common-link.js",
+			"plugin/html/setting.html",
+			"css/fonts/mui.ttf"
+		],
+		"refer": [
+			"html/msg/html/msg-chat.html",
+			"html/service/html/ser-submit.html",
+			"plugin/html/setting.html"
+		]
+	},
+	"plugin/html/pullrefresh_main.html": {
+		"resources": [
+			"plugin/html/pullrefresh_sub.html",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"js/mms-pull-list.js",
+			"js/mms-common-link.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"html/service/html/ser-submit.html"
+		],
+		"refer": [
+			"plugin/html/pullrefresh_sub.html",
+			"html/service/html/ser-submit.html",
+			"html/msg/html/msg-chat.html"
+		]
+	},
+	"html/msg/html/msg-info.html": {
+		"resources": [
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"html/msg/img/icon16.png",
+			"html/msg/css/msg-main.css",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css"
+		]
+	},
+	"html/more/html/more_down_list.html": {
+		"resources": [
+			"html/more/css/more-down-list.css",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"js/mms-common-link.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"html/more/img/more-ffile.png",
+			"css/mui/mui.min.css",
+			"img/nothing.png"
+		]
+	},
+	"html/more/html/more-tab.html": {
+		"resources": [
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"js/mui/mui.pullToRefresh.js",
+			"js/mms-common-link.js",
+			"html/service/img/svg/icon-bar-nav.svg",
+			"html/more/js/more-downFile.js",
+			"html/more/js/more.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"js/mui/mui.pullToRefresh.material.js",
+			"html/more/css/more.css",
+			"css/mui/mui.min.css",
+			"html/more/html/more.html",
+			"html/more/img/more-q.png",
+			"html/more/img/more-a.png"
+		],
+		"refer": [
+			"html/more/html/more.html"
+		]
+	},
+	"html/service/html/ser-submit.html": {
+		"resources": [
+			"img/svg/icon-camera.svg",
+			"js/mms-upload.js",
+			"img/icon-close.png",
+			"html/service/js/service.js",
+			"js/mms-word-limit.js",
+			"css/mms-upload.css",
+			"css/plugin/imageviewer.css",
+			"js/mms-upload-photo.js",
+			"js/mms-down-img.js",
+			"js/mui/mui.previewimage.js",
+			"js/mui/mui.zoom.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"plugin/html/pullrefresh_main.html"
+		],
+		"refer": [
+			"plugin/html/pullrefresh_main.html"
+		]
+	},
+	"html/service/html/ser-finish.html": {
+		"resources": [
+			"html/service/img/star1.png",
+			"img/svg/icon-camera.svg",
+			"js/mms-upload.js",
+			"img/icon-close.png",
+			"html/service/img/star2.png",
+			"js/mui/mui.picker.min.js",
+			"js/mms-word-limit.js",
+			"css/plugin/imageviewer.css",
+			"css/mms-upload.css",
+			"html/service/img/remind.png",
+			"js/mms-upload-photo.js",
+			"html/service/css/ser-finish.css",
+			"js/mui/mui.previewimage.js",
+			"js/mui/mui.zoom.js",
+			"js/mms-common-link.js",
+			"html/service/js/service.js",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"html/service/html/service.html"
+		],
+		"refer": [
+			"html/service/html/service.html"
+		]
+	},
+	"html/service/html/ser-illustrate.html": {
+		"resources": [
+			"img/svg/icon-camera.svg",
+			"js/mms-upload.js",
+			"img/icon-close.png",
+			"html/service/js/service.js",
+			"js/mui/mui.picker.min.js",
+			"js/mms-word-limit.js",
+			"css/plugin/imageviewer.css",
+			"css/mms-upload.css",
+			"css/mms-common.css",
+			"js/mms-upload-photo.js",
+			"css/mui/mui.min.css",
+			"img/complete.png"
+		]
+	},
+	"html/more/html/more-set-id.html": {
+		"resources": [
+			"html/more/css/more.css",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"js/mms-common-link.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css"
+		]
+	},
+	"reg-prompt.html": {
+		"resources": [
+			"js/mui/mui.min.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"js/mms-common.js"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"plugin/html/search.html": {
+		"resources": [
+			"js/mms-search.js",
+			"html/more/js/more-downFile.js",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"js/mui/mui.pullToRefresh.js",
+			"js/mms-common-link.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"html/service/img/icon5.png",
+			"html/service/img/icon7.png",
+			"html/service/img/icon10.png",
+			"html/service/css/service.css",
+			"html/service/img/svg/icon-bar-nav.svg",
+			"html/service/img/icon6.png",
+			"html/service/img/priority-01.png",
+			"html/service/img/icon9.png",
+			"html/service/img/icon8.png"
+		]
+	},
+	"html/msg/html/msg-session.html": {
+		"resources": [
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"html/msg/img/svg/icon-bar-nav.svg",
+			"html/msg/css/msg-session.css",
+			"js/mms-common-link.js",
+			"html/msg/img/svg/icon-session-bar.svg",
+			"html/msg/js/msg-session.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css"
+		],
+		"refer": [
+			"html/msg/html/msg-chat.html",
+			"html/msg/html/msg-mailList.html"
+		]
+	},
+	"html/msg/html/msg-chat-person.html": {
+		"resources": [
+			"html/msg/img/icon16.png",
+			"html/msg/css/msg-chat.css",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"html/msg/img/iconfont-tianjia.png",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"js/mms-common-link.js",
+			"css/fonts/mui.ttf"
+		],
+		"refer": [
+			"html/msg/html/msg-mailList.html"
+		]
+	},
+	"html/msg/html/msg-mailList.html": {
+		"resources": [
+			"html/msg/css/msg-mailList.css",
+			"html/msg/js/msg-mailList.js",
+			"js/mui/mui.lazyload.img.js",
+			"js/mui/mui.lazyload.js",
+			"js/mms-common.js",
+			"js/mui/mui.min.js",
+			"css/fonts/mui.ttf",
+			"css/mms-common.css",
+			"css/mui/mui.min.css"
+		]
+	},
+	"plugin/html/setting.html": {
+		"resources": [
+			"plugin/html/js/mui.view.js",
+			"plugin/html/js/feedback.js",
+			"plugin/html/css/feedback.css",
+			"css/mui/mui.min.css",
+			"js/mui/mui.min.js",
+			"css/fonts/mui.ttf",
+			"plugin/html/img/logo.png"
+		]
+	},
+	"index.html": {
+		"resources": [
+			"js/mui/mui.min.js",
+			"img/guide/guide.jpg",
+			"css/mui/mui.min.css"
+		],
+		"refer": [
+			"guide.html"
+		]
+	},
+	"html/service/html/ser-info.html": {
+		"resources": [
+			"css/plugin/imageviewer.css",
+			"css/mms-common.css",
+			"css/mui/mui.min.css",
+			"js/mms-common.js",
+			"js/mui/mui.previewimage.js",
+			"js/mui/mui.min.js",
+			"js/mui/mui.zoom.js",
+			"css/fonts/mui.ttf",
+			"js/mms-down-img.js"
+		]
+	}
+}

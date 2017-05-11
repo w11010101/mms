@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../../../css/mui/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/msg-mailList.css" />
+	</head>
+
+	<body class="msg-mailLists">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">通讯录</h1>
+			<a class="mui-icon-right-nav mui-pull-right msg-mailList-active">确定</a>
+		</header>
+		<div class="mui-content">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view msg-mailList-cust-contacts">
+						
+					</ul>
+					<div class="mui-loading">
+						<div class="mui-spinner"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mui/mui.lazyload.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mui/mui.lazyload.img.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mms-common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/msg-mailList.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui(document).imageLazyload({
+				placeholder: 'images/60x60.gif'
+			});
+			get_mailList(getInterim.org_id);
+			
+		</script>
+	</body>
+
+</html>

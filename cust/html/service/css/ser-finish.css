@@ -1,0 +1,74 @@
+html,body,.mui-content{
+	height: 100%;
+}
+#ser-slider,#ser-slider .mui-slider-group{
+	height:100%;
+}
+.ser-finish .ser-textarea{
+	top:0
+}
+/*待确认*/
+.ser-finish h3{
+    background: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px 15px 0px 40px;
+    position: relative;
+}
+.ser-finish h3:before {
+    content: " ";
+    height: 40px;
+    width: 40px;
+    background: url(../img/remind.png) no-repeat 15px center;
+    background-size: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+.mui-content > p {
+    margin: 0!important;
+    background: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #d8d8d8;
+}
+.mui-control-content{
+	background:#fff;
+}
+.ser-star-box{
+    padding: 20px;
+}
+.ser-star-box img {
+    display: inline-block;
+    width: 25px!important;
+    height: 25px;
+    vertical-align: bottom;
+    margin: 0 3px;
+    border: none!important;
+}
+textarea{
+	border:0px;
+}
+.mui-content-div {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    height: 40px;
+    z-index: 10;
+}
+
+.mui-content-div a {
+    display: block;
+    width: 80%;
+    text-align: center;
+    border-radius: 5px;
+    height: inherit;
+    line-height: 40px;
+    border: 1px solid #00af26;
+    color: #fff;
+    margin: 0 auto;
+    background: #00af26;
+}

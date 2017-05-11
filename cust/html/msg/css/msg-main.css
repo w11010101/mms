@@ -1,0 +1,79 @@
+html,
+body {
+	background-color: #efeff4;
+}
+header a {
+	float: right;
+	line-height: 45px;
+	font-size: 16px
+}
+.chart {
+	height: 200px;
+	margin: 0px;
+	padding: 0px;
+}
+.mui-card-header>img:first-child{
+	float: none;
+	display: block;
+}
+.mui-card-header.mui-card-media .mui-media-body{
+	margin: 0;
+	position: absolute;
+	top:20px;
+	left:50px;
+}
+.mui-content-padded{
+	overflow: hidden;
+}
+.chart{
+	width: 350px;
+	height: 175px;
+	left:50%;
+	margin:0 0 0 -175px;
+}
+.mui-card-header.mui-card-media{
+	height: 100%;
+}
+.mui-card-footer:before, .mui-card-header:after{
+	background: none;
+}
+.mui-bar-nav~.mui-content .mui-slider.mui-fullscreen{
+	top:0;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+	border:0px
+}
+/*.mui-table-view-cell{
+	height: 62px;
+}*/
+#slider{
+	top:45px;
+	bottom:50px;	
+}
+.main-info-content {
+	background: #fff;
+	padding: 15px;
+}
+.mui-media-body{
+	font-family: "微软雅黑";
+}
+.msg-info .mui-media-body{
+	line-height: 40px;
+}
+.mui-media-body span{
+	line-height: 40px;
+	font-size: 16px;
+	float:right
+}
+.msg .mui-tab-item:first-child .icon-bar-news {
+	/*background-position: 0px 0;*/
+	background-position: -50px 0;
+}
+.mui-slider .mui-table-view .mui-media-object {
+    line-height: 51px;
+    height: 51px;
+    max-width: 51px;
+}
+.mui-slider .mui-table-view-cell>a {
+    padding: 16px 15px;
+}

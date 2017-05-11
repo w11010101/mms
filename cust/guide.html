@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<link href="css/mui/mui.min.css" rel="stylesheet" />
+		<link href="css/mms-guide.css" rel="stylesheet" />
+		<script src="js/mms-common-link.js"></script>
+	</head>
+
+	<body class="common_class">
+		<!-- 启动页-->
+		<div class="gui-start">
+			<img src="img/guide/guide.jpg" alt="" />
+		</div>
+		<!-- 引导页-->
+		<div id="slider" class="mui-slider mui-fullscreen">
+			<div class="mui-slider-group">
+
+				<!-- 第一张 -->
+				<div class="mui-slider-item">
+					<img src="img/guide/guide_1.png" alt="" class="" />
+					<div class="animate guide-show">
+						<h2 class="animated bounceInDown">申报服务</h2>
+						<li class="animated bounceInRight">随时随地想申就申</li>
+					</div>
+
+				</div>
+
+				<!-- 第二张 -->
+				<div class="mui-slider-item">
+					<img src="img/guide/guide_2.png" alt="" class="" />
+					<div id="tips-2" class="animate mui-hidden">
+						<h2 class="animated bounceInDown">流程</h2>
+						<li class="animated bounceInRight">随时查询服务进度</li>
+					</div>
+				</div>
+				<!-- 第三张 -->
+				<div class="mui-slider-item ">
+					<img src="img/guide/guide_3.png" alt="" class="" />
+					<div id="tips-3" class="animate">
+						<h2 class="animated bounceInDown">实时交流</h2>
+						<li class="animated bounceInLeft">沟通无限、交流无障碍</li>
+						<a id='close' class="mui-btn mui-btn-warning mui-btn-outlined ">立即体验</a>
+					</div>
+				</div>
+			</div>
+			<div class="mui-slider-indicator gui-pages">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+		<div class="skip-over">跳过</div>
+	</body>
+	<script src="js/mui/mui.min.js"></script>
+	<script src="js/mms-common.js"></script>
+	<script src="js/plugin/encrypt/base64.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/des.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/guid.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/mac.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/sha1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/cas/client.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mms-guide.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mms-webSocket.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//		localStorage.removeItem("start");
+//				localStorage.removeItem("STN");
+		//		localStorage.removeItem(getInterimID+"-chatList");
+		// 判断版本更新
+		if(window.plus) {
+			plusReady();
+		} else {
+			document.addEventListener("plusready", plusReady, false);
+		}
+		function plusReady() {
+			plus.navigator.setStatusBarBackground('#2aa3f2');
+			if(plus.os.name == "iOS") {
+				plus.navigator.setStatusBarStyle('UIStatusBarStyleBlackOpaque');
+			}
+			log_get_devices();
+			if(mui.os.ios) {
+				log_isGuide()
+			} else {
+				log_get_version();
+			}
+			//查询最新版本
+			function log_get_version() {
+				var urls = mmsappurl.update;
+				mui.ajax(urls, {
+					dataType: 'json', //服务器返回json格式数据
+					type: 'post', //HTTP请求类型
+					success: function(data) {
+						var data = data.data;
+						log_get_version_success(data);
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast(errorThrown);
+					}
+				})
+				function log_get_version_success(data) {
+					var cloud_ver = data.edition;
+					plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+						var this_ver = inf.version;
+						for(var i = 0; i < 3; i++) {
+							var t = this_ver.split(".")[i];
+							var c = cloud_ver.split(".")[i];
+							if(t == c) {} else {
+								if(t > c) {
+									log_isGuide();
+									break;
+								} else if(t < c) {
+									updater_versions();
+									break;
+								}
+							}
+						}
+						function updater_versions() {
+							var btnArray = ['否', '是'];
+							mui.confirm('有新版本发布，是否更新？', '新中新运维云平台客户版', btnArray, function(e) {
+								if(e.index == 1) {
+									log_isGuide();
+									var downLoads = mmsappurl.download;
+									mui.toast("已添加到下载列表");
+									var dtask = plus.downloader.createDownload(downLoads, {}, function(d, status) {
+										// 下载完成
+										if(status == 200) {
+											plus.runtime.install(d.filename, "", function(widgetInfo) {
+												//正确安装后的回调
+											}, function(DOMException) {
+												//安装失败的回调
+											})
+										} else {
+											plus.nativeUI.toast("失败");
+										}
+									});
+									dtask.start();
+								} else {
+								}
+							})
+						}
+
+					});
+				}
+			}
+			//图片切换时，触发动画
+			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
+				//注意slideNumber是从0开始的；
+				var index = event.detail.slideNumber + 1;
+				if(index == 2 || index == 3) {
+					var item = document.getElementById("tips-" + index);
+					if(item.classList.contains("mui-hidden")) {
+						item.classList.remove("mui-hidden");
+						item.classList.add("guide-show");
+					}
+				}
+			});
+			//立即体验按钮点击事件 and 跳过
+			mui('body').on('tap', '#close,.skip-over', function() {
+				jump("login.html");
+			})
+		}
+		// 判断是否显示引导页
+		function log_isGuide() {
+			if(localStorage.getItem("start")) {
+				log_judge_STN();
+			} else {
+				setTimeout(function() {
+					if(plus.os.name == "iOS") {
+						plus.navigator.setStatusBarBackground('#ffffff');
+						plus.navigator.setStatusBarStyle('UIStatusBarStyleDefault');
+					} else {
+						plus.navigator.setStatusBarBackground('#0A569D');
+					}
+					implementJS(".gui-start").fade_out(500);
+					localStorage.setItem("start", "start");
+				}, 500);
+			}
+		}
+	</script>
+
+</html>

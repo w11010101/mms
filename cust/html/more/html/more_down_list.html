@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>文件下载管理</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/mui/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" href="../css/more-down-list.css" type="text/css" charset="utf-8" />
+		<script src="../../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mms-common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var dir = "",
+				root = [],
+				current = null,
+				parent = null,
+				pitem = null,
+				list = null,
+				getUl = null;
+			var htmlItem = '<img class="ficon"></img><div><span class="fname"></span><span class="finf">...</span></div>';
+			document.addEventListener("plusready", function() {
+				pitem = document.getElementById("pdir");
+				list = document.getElementById("dcontent");
+				getUl = document.getElementById("OA_task_1");
+
+				// Get root item information
+				var items = list.querySelectorAll(".fitem");
+				for(var i = 0; i < items.length; i++) {
+					updateRootItem(items[i]);
+
+				}
+
+			}, false);
+			// Update root information with item(HTMLUIElement)
+			function updateRootItem(item) {
+				plus.io.resolveLocalFileSystemURL(dir + item.id, function(entry) {
+					root.push(entry);
+					item.entry = entry;
+					//					updateInf(item, entry);
+					openDir(item);
+				}, function(e) {
+					console.log("Update " + item.id + " information failed: " + e.message);
+				});
+			}
+			// Update HTMLUIElement information with entry object
+			function updateInf(item, entry) {
+				entry.getMetadata(function(metadata) {
+					var inf = item.querySelector(".finf");
+					if(entry.isDirectory) {
+						inf.innerText = "文件夹:" + metadata.directoryCount + "项，文件:" + metadata.fileCount + "项";
+					} else {
+						inf.innerText = dateToStr(metadata.modificationTime);
+					}
+				}, function(e) {
+					console.log("Get metadata " + entry.name + " failed: " + e.message);
+				}, false);
+			}
+			// Update ui with entries
+			function updateList(entries) {
+				var i, items = [].slice.apply(list.querySelectorAll(".fitem"));
+
+				items.shift();
+				// sort the entries
+				entries.sort(sortCompareEntry)
+				// Update item to ui
+				for(i = 0; i < entries.length; i++) {
+					var di = null;
+					var li = null;
+					if(i < items.length) {
+						di = items[i];
+						di.style.display = "block";
+
+					} else {
+						li = document.createElement("li");
+						li.classList.add("mui-table-view-cell");
+						li.innerHTML = '<div class="mui-slider-right mui-disabled"><a class="mui-btn mui-btn-red">删除</a></div><div class="mui-slider-handle"></div>'
+						di = document.createElement("div");
+						di.className = "fitem";
+						di.setAttribute("onclick", "openDir(this);");
+						di.innerHTML = htmlItem;
+
+						getUl.appendChild(li);
+						getUl.children[getUl.children.length - 1].querySelector(".mui-slider-handle").appendChild(di);
+					}
+					di.entry = entries[i];
+					di.id = di.entry.name;
+					di.querySelector(".fname").innerText = di.id;
+					di.querySelector(".finf").innerText = "";
+					if(entries === root) {
+						di.querySelector(".ficon").src = "../img/more-fdisk.png";
+					} else {
+						di.querySelector(".ficon").src = di.entry.isDirectory ? "../img/more-fdir.png" : "../img/more-ffile.png";
+					}
+					updateInf(di, di.entry);
+				}
+				// Hide other items
+				for(; i < items.length; i++) {
+					items[i].style.display = "none";
+					items[i].entry = null;
+				}
+				// Reset scroll offset
+				list.scrollTop = 0;
+			}
+
+			// Open directory with item(HTMLUIElement)
+			function openDir(item) {
+				var entry = item.entry;
+				if(!entry) {
+					console.log("Open directory \"" + item.id + "\" with null!");
+					return;
+				}
+				if(entry.isDirectory) {
+					console.log("Open directory: \"" + dir + item.id + "\"");
+					var dirReader = entry.createReader();
+					dirReader.readEntries(function(entries) {
+						if(!entries.length) {
+							mui.toast("文件为空");
+//							queryElement(".mui-content").appendChild(mmsNothing());
+							return;
+						}
+						parent = current;
+						current = item.entry;
+						dir = entry.toURL() + "/";
+						// Dispaly up to parent item
+						//						pitem.style.display = "block";
+						// Update ui
+						updateList(entries);
+					}, function(e) {
+						console.log("Read directory " + item.id + " failed: " + e.message);
+					});
+				} else {
+					console.log("Open file: \"" + dir + item.id + "\"");
+					plus.runtime.openFile(dir + item.id, {}, function(e) {
+						if(e.emssag){
+							plus.nativeUI.alert("无法打开此文件：" + e.emssag);
+						}else{
+							plus.nativeUI.alert("暂不支持此类格式文件");
+						}
+					});
+				}
+			}
+			// Back to parent directory
+			function parentDir() {
+				var p = dir.lastIndexOf("/", dir.length - 2);
+				if(p < 0 || !parent) { // Up to root
+					dir = "";
+					current = parent = null;
+					// hide up to parent item
+					pitem.style.display = "none";
+					// Update ui
+					updateList(root);
+				} else {
+					var dirReader = parent.createReader();
+					dirReader.readEntries(function(entries) {
+						dir = dir.substr(0, p + 1);
+						console.log("Current directory: \"" + dir + "\"");
+						current = parent;
+						current.getParent(function(entry) {
+							parent = entry;
+						}, function(e) {
+							console.log("Get \"" + current.name + "\" parent directory failed: " + e.emssage);
+						});
+						parent = null;
+						// Update ui
+						updateList(entries);
+					}, function(e) {
+						console.log("Read directory " + item.id + " failed: " + e.message);
+					});
+				}
+			}
+			// Entry sort compare
+			function sortCompareEntry(a, b) {
+				if(a.isDirectory && b.isFile) {
+					return -1;
+				} else if(a.isFile && b.isDirectory) {
+					return 1;
+				} else {
+					return a.name - b.name;
+				}
+			}
+			// Format data to string
+			function dateToStr(datetime) {
+				var year = datetime.getFullYear(),
+					month = datetime.getMonth() + 1,
+					date = datetime.getDate(),
+					hour = datetime.getHours(),
+					minutes = datetime.getMinutes(),
+					second = datetime.getSeconds();
+				if(month < 10) {
+					month = "0" + month;
+				}
+				if(date < 10) {
+					date = "0" + date;
+				}
+				if(hour < 10) {
+					hour = "0" + hour;
+				}
+				if(minutes < 10) {
+					minutes = "0" + minutes;
+				}
+				if(second < 10) {
+					second = "0" + second;
+				}
+				return(year + "-" + month + "-" + date + " " + hour + ":" + minutes + ":" + second);
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">文件下载管理</h1>
+		</header>
+		<div class="mui-content">
+
+			<div id="dcontent" class="dcontent">
+				<div id="_downloads" class="fitem">
+
+				</div>
+				<ul id="OA_task_1" class="mui-table-view">
+				</ul>
+			</div>
+			
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		// 文件删除
+		mui.init();
+		(function($) {
+			//第一个demo，拖拽后显示操作图标，点击操作图标删除元素；
+			var btnArray = ['确认', '取消'];
+			$('#OA_task_1').on('tap', '.mui-btn', function(event) {
+				var elem = this;
+				var li = elem.parentNode.parentNode;
+				mui.confirm('确认删除该条记录？', '', btnArray, function(e) {
+					if(e.index == 0) {
+						li.parentNode.removeChild(li);
+						// 是
+						li.querySelector(".fitem").entry.remove(function() {
+							console.log("删除成功");
+//							if(!mui("li").length){
+//								queryElement(".mui-content").appendChild(mmsNothing());
+//							}
+						}, function() {
+							console.log("删除失败");
+						})
+					} else {
+						// 否
+						setTimeout(function() {
+							$.swipeoutClose(li);
+						}, 0);
+					}
+				});
+			});
+		})(mui);
+	</script>
+
+</html>

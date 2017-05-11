@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui/mui.min.css" rel="stylesheet" />
+		<link href="css/mms-login.css" rel="stylesheet" />
+		<script src="js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body class="login">
+		<div class="mui-content log-cloud">
+			<img src="img/logo-header.png" alt="" class="log-cloud-img" />
+			<h1>新中新运维监控云服务</h1>
+			<p>客户版</p>
+			<form id="login-form" class="mui-input-group login-form" action="http://172.16.15.19:20000/reg/phone/captcha" method="post" target="_self" name="FrmSearch" phone="">
+				<input type="hidden" id="atype" value="account" />
+				<div class="mui-input-row">
+					<label class="label-media"> 
+						<i class="mui-icon icon-input-user"></i>
+					</label>
+					<input id="account" type="tel" class="mui-input-clear mui-input" placeholder="手机号" value="">
+				</div>
+				<div class="mui-input-row mui-password">
+					<label class="label-media">
+						<i class="mui-icon icon-input-ps"></i>
+					</label>
+					<input id="password" type="password" class="mui-input-password log-password-show log-switch" placeholder="密码" value="">
+					<!--<i id="getcheckedcode">获取验证码</i>-->
+					<input type="button" name="" id="getcheckedcode" value="获取验证码" />
+
+					<input type="number" id="checkedcode" placeholder="验证码" pattern="[0-9]*">
+				</div>
+			</form>
+			<button id="log-btn" type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+			<div class="log-link-area">
+				<p id="forgetPassword">
+					验证码登录
+				</p>
+				<p>
+					<i class="log-icon-arr"></i>
+					<em>还没有帐户？</em>
+					<a id="log-reg">注册</a>
+				</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui/mui.min.js"></script>
+	<script src="js/mms-common-back.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/base64.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/des.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/guid.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/mac.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/md5.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/encrypt/sha1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/plugin/cas/client.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mms-common.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/mms-guide.js"></script>
+	<script src="js/mms-login.js"></script>
+	<script src="js/mms-webSocket.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		mui.plusReady(function() {
+			if(plus.os.name == "iOS") {
+				plus.navigator.setStatusBarBackground('#ffffff');
+				plus.navigator.setStatusBarStyle('UIStatusBarStyleDefault');
+			} else {
+				plus.navigator.setStatusBarBackground('#0A569D');
+			}
+		})
+		// 登录 按钮
+		// 判断票据是否 存在
+		var login_btn = queryElement("#log-btn");
+		var account = queryElement("#account");
+		var getpassword = queryElement("#password");
+		var getInput = queryAllElement("input");
+		login_btn.addEventListener('tap', function() {
+			mui.each(getInput, function(index, element) {
+				element.blur()
+			})
+			var val = account.value;
+			var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+			if(val == "") {
+				mui.toast('手机号不能为空！');
+				mui("#log-btn").button('reset');
+				return false;
+			} else if(val != "") {
+				if(!reg.test(val)) {
+					mui.toast('手机号不正确！');
+					mui("#log-btn").button('reset');
+					return false;
+				}
+			}
+			var logon_info = agent1().build_logon_info(null);
+			if(this.innerHTML == "登录") {
+				if(implementJS("#password").has_class("log-switch")) {
+					var urls = mmsappurl.signIn;
+					logon_info.pwd = GetValueByID("password");
+					if(logon_info.pwd == "") {
+						mui.toast('密码不能为空！');
+						return false;
+					}
+				} else {
+					var urls = mmsappurl.signIn;
+					logon_info.checkcode1 = GetValueByID("checkedcode");
+					if(logon_info.checkcode1 == "") {
+						mui.toast('验证码不能为空！');
+						return false;
+					}
+				}
+			} else if(this.innerHTML == "注册") {
+				var urls = mmsappurl.register;
+				logon_info.checkcode = GetValueByID("checkedcode");
+				if(logon_info.checkcode == "") {
+					mui.toast('验证码不能为空！');
+					return false;
+				}
+			}
+			logon_info.account = GetValueByID("account");
+			getAjax(urls, logon_info, success, fail_callback);
+			mui("#log-btn").button('loading'); //切换为loading状态
+			function success(data) {
+				if(data.ret) {
+					localStorage.setItem("STN", data.errmsg);
+					var logon_info = agent1().build_logon_info(null);
+					log_STN_Results(logon_info);
+				} else {
+					if(data.errmsg == "Internal Server Error") {
+						mui.toast("内部服务错误");
+					} else {
+						mui.toast(data.errmsg);
+					}
+					mui("#log-btn").button('reset');
+				}
+			}
+		})
+		function GetValueByID(id) {
+			return document.getElementById(id).value;
+		}
+	</script>
+
+</html>

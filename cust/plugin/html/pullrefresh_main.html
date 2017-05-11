@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../css/mui/mui.min.css">
+		<link rel="stylesheet" href="../../css/mms-common.css">
+		<script src="../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.mui-bar .ser-newly-build,
+		.mui-bar .ser-newly-add {
+			font-size: 16px;
+			line-height: 44px;
+			padding: 0;
+			display: none;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title"></h1>
+			<a class="mui-icon mui-icon-right-nav mui-pull-right ser-newly-build">新建</a>
+		</header>
+		<div class="mui-content"></div>
+	</body>
+	<script src="../../js/mui/mui.min.js"></script>
+	<script src="../../js/mms-common.js"></script>
+	<script src="../../js/mms-pull-list.js"></script>
+	<script type="text/javascript">
+		//启用双击监听
+		mui.init({
+			gestureConfig: {
+				doubletap: true
+			},
+			subpages: [{
+				url: 'pullrefresh_sub.html',
+				id: 'pullrefresh_sub.html',
+				extras: {
+					objs: localStorage.getItem("page-type") //  本地存储是调用接口的传参
+				},
+				styles: {
+					top: '45px',
+					bottom: '0px',
+				}
+			}]
+		});
+		ser_list_tap();
+		mui.plusReady(function() {
+			var value = plus.webview.currentWebview();
+			// 根据传值value.type来区分功能！
+			switch(value.type) {
+				case "draft":
+					mui(".mui-title")[0].innerHTML = "草稿箱";
+					mui(".ser-newly-build")[0].style.display = "block";
+					mui(".ser-newly-build")[0].setAttribute("mtype", value.page_name == "报修单" ? 1 : 2);
+					mui(".ser-newly-build")[0].setAttribute("href", "../../html/service/html/ser-submit.html");
+					break;
+				case "chat":
+					mui(".mui-title")[0].innerHTML = "会话组";
+					break;
+				case "note":
+					mui(".mui-title")[0].innerHTML = "我的笔记";
+					break;
+				default:
+					break;
+			}
+
+		});
+		var contentWebview = null;
+		document.querySelector('header').addEventListener('doubletap', function() {
+			if(contentWebview == null) {
+				contentWebview = plus.webview.currentWebview().children()[0];
+			}
+			contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+		});
+		queryElement(".mui-action-back").addEventListener("tap", function() {
+			var prevW = plus.webview.currentWebview().opener();
+			//			alert(localStorage.getItem(getInterimID + "-page-ide"))
+			if(~prevW.id.indexOf("msg.html")) {
+				prevW.reload(true);
+				old_back();
+				//				localStorage.setItem(getInterimID + "-page-ide",1011);
+			}
+		})
+	</script>
+
+</html>
