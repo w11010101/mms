@@ -1,0 +1,110 @@
+.mms-draft {
+	
+}
+.mms-draft .mui-table-view-chevron .mui-table-view-cell{
+	padding:11px 15px;
+}
+.mms-draft ul li a,.mms-draft ul li span{
+	color:#000000;
+	font-size:14px;
+}
+.mms-draft ul li .mui-media-body a{
+	display: inline-block;
+	width: 50%;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.mms-chat-group .mui-media-body{
+	line-height: 42px;
+}
+.mui-search{
+	display: none;
+	z-index: 99;
+}
+.mms-search .mui-search{
+	display: block;
+}
+.mui-search input{
+	border: 1px solid #CCCCCC;
+}
+.mms-search .mui-indexed-list-search{
+	display: block;
+}
+.mms-search .mui-scroll-wrapper{
+	padding-top: 48px !important;
+}
+.mui-search.mui-active, .mui-search{
+	padding: 0 !important;
+    margin: 5px !important;
+    line-height: 34px !important;
+}
+input[type=search] {
+    margin-bottom: 0 !important;
+    background-color: #fff;
+}
+/*
+ * 笔记相关样式
+ */
+.mms-note .mui-table-view-chevron .mui-table-view-cell {
+    padding-right: 15px !important;
+}
+
+li.note h4{
+	font-weight: 500;
+	font-size: 16px;
+}
+.mui-table-cell.mui-col-xs-8{
+	/*padding-top: 10px;*/
+}
+/*
+ * 客户名录
+ */
+.mms-direc .mui-collapse-content .mui-slider-handle .mui-ellipsis{
+	font-weight: 400 !important;
+	font-size: 16px !important;
+}
+.mms-direc .mui-table-view-cell.mui-collapse .mui-table-view{
+	margin-top: 0px;
+}
+.mms-direc .mui-table-view-cell.mui-collapse .mui-collapse-content{
+	padding: 0 15px 8px 10px !important;
+}
+.mms-direc .mui-table-view-cell{
+	/*padding: 10px 15px;*/
+						   
+								 
+}
+.verify_disable,.verify_edit{
+	font-size:14px!important;
+}
+.mms-direc .mui-table-view-cell>a:not(.mui-btn){
+	margin: -8px -15px;
+						   
+}
+.mms-direc .mui-table{
+	width: 100%!important;
+}
+.mms-direc ul{
+	margin-top: 1px;
+}
+.mms-direc .mui-active{
+	background-color: #FFFFFF !important;
+}
+.mms-direc .mui-navigate-right.custom-reset-padding{
+	padding-left: 15px !important;
+	font-size: 16px !important;
+}
+.mms-direc ul ul .mui-media-body{
+	font-size: 14px !important;
+}
+.mms-direc .mui-collapse-content{
+	border-top: 1px solid #CCCCCC;
+}
+.mms-direc i{
+	font-style: normal;
+	padding-right: 10px;
+}
+.mms-direc .coustom_loading,.coustom-load {
+	padding: 50px 40%;
+}

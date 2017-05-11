@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>服务service</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-upload.css" />
+		<link rel="stylesheet" type="text/css" href="../css/ser-finish.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/plugin/imageviewer.css" />
+		<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mms-word-limit.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.mui-media p {
+			height: 18px;
+		}
+		.mui-content> p {
+			/*height: 42px;*/
+			margin: 0!important;
+			background: #fff;
+			padding: 10px 20px;
+			border-bottom: 1px solid #d8d8d8;
+		}
+		.mui-content> h3 {
+			border-bottom: 1px solid #d8d8d8;
+		}
+		.coustom-2{
+			width: 50%;
+		}
+	</style>
+
+	<body class="ser-finish">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">待确认</h1>
+		</header>
+		<div class="mui-content">
+			<h3>执行完毕，请确认</h3>
+			<!-- <p>执行完毕</p> -->
+			<div id="ser-slider" class="mui-slider">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1mobile">已解决</a>
+						<a class="mui-control-item " href="#item2mobile">未解决</a>
+					</div>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4 coustom-2"></div>
+				<div class="mui-slider-group a-link">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div class="ser-star-box">
+							评分：
+							<img src="../img/star1.png" alt="" />
+							<img src="../img/star1.png" alt="" />
+							<img src="../img/star1.png" alt="" />
+							<img src="../img/star1.png" alt="" />
+							<img src="../img/star2.png" alt="" />
+						</div>
+						<textarea id="" rows="4" placeholder="请填写服务评价" oninput="ser_wordLimit(this,'other');" maxlength="200"></textarea>
+						<span class="tips_wordLimit"></span>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-input-row ser-textarea">
+							<textarea id="" rows="4" placeholder="请填写描述内容..." oninput="ser_wordLimit(this,'other');" maxlength="200" ></textarea>
+							<span class="tips_wordLimit"></span>
+							<div class="uploadimg">
+								<ul class="device-img">
+									
+									<li class="upload-exception"><span class="upload-box"></span></li>
+									<li class="pre-text upload-exception">添加图片...</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mui-content-div">
+				<a>完毕</a>
+			</div>
+
+			<div id="mask-box" class="mask-box mask-box-hide">
+				<div class="mask-content">
+					<h3>选择操作<a class="icon-close"></a></h3>
+					<button onclick="photo()">拍照</button>
+					<button onclick="galleryImgs()">选择多张图片</button>
+				</div>
+			</div>
+		</div>
+		<!-- mask layer 遮罩层 -->
+		<div class="mask-layer">
+
+			<div class="mui-loading">
+				<!-- spinner-finish -->
+				<div class="mui-spinner ">
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script src="../../../js/mui/mui.picker.min.js"></script>
+	<script src="../../../js/mui/mui.previewimage.js"></script>
+	<script src="../../../js/mui/mui.zoom.js"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script src="../../../js/mms-upload-photo.js"></script>
+	<script src="../../../js/mms-upload.js"></script>
+	<script src="../js/service.js"></script>
+	
+	<script type="text/javascript">
+		mui.plusReady(function() {
+				var value = plus.webview.currentWebview();
+				mui("body")[0].setAttribute("passval-id", value.passval_id);
+				ser_get_info(value.passval_id);
+			})
+			// 评分选择
+		mui(".ser-star-box").on("tap", "img", function() {
+				mui.each(mui(".ser-star-box img"), function(i, e) {
+					e.setAttribute("src", "../img/star2.png");
+					e.removeAttribute("this-index");
+				});
+				this.setAttribute("src", "../img/star1.png");
+				this.setAttribute("this-index", "this");
+				for(var x = 0; x < mui(".ser-star-box img").length; x++) {
+					if(mui(".ser-star-box img")[x].getAttribute("this-index")) {
+						mui(".ser-star-box img")[x].setAttribute("src", "../img/star1.png");
+						mui(".ser-star-box")[0].setAttribute("satisfaction", x + 1)
+						break;
+					} else {
+						mui(".ser-star-box img")[x].setAttribute("src", "../img/star1.png");
+					}
+				}
+			})
+			//任务信息
+		function ser_get_info(id) {
+			var urls = mmsappurl.service.mission;
+			var datas = {
+				id: id
+			}
+			getAjax(urls, datas, ser_get_infosuccess, fail_callback);
+
+			function ser_get_infosuccess(data) {
+				var data = data.data;
+				// mui(".mui-content p")[0].innerHTML = data.description;
+				var parameter = {};
+				mui("body").on("tap", ".mui-content-div", function() {
+					if(queryElement("#item1mobile").classList.contains("mui-active")) {
+						ser_solve_mode("resolved");
+					} else {
+						ser_solve_mode("noResolved");
+					}
+				})
+
+				function ser_solve_mode(type) {
+					if(type === "resolved") {
+						parameter.mid = id;
+						parameter.operator_id = getInterimID;
+						parameter.confirmed = true;
+						parameter.satisfaction = 5;
+						if(parameter.satisfaction != 5) {
+							parameter.satisfaction = mui(".ser-star-box")[0].getAttribute("satisfaction");
+						}
+						if(!mui(".mui-active textarea")[0].value) {
+							parameter.valuation = "";
+						} else {
+							parameter.valuation = mui(".mui-active textarea")[0].value;
+						}
+						ser_solve(parameter);
+					} else {
+						if(mui(".device-img .imgs_boxs").length){
+							getImg = mui(".imgs_boxs");
+							serCommonUploadJudge(findImg(getImg), suffix_img(getImg), "noSolved");
+						}else{
+							ser_noSolve();
+						}
+					
+					}
+				}
+			}
+		}
+		// ********************************************* 
+		// 完毕按钮
+		mui("body").on("tap", ".mui-content-div", function() {
+			judgeText();
+		})
+	</script>
+
+</html>

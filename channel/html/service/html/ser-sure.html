@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>新中新运维监控云服务-渠道版-服务</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/plugin/imageviewer.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-upload.css" />
+		<script src="../../../js/mms-word-limit.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.mui-card-footer:before{
+				background-color: #FFFFFF;
+			}
+			.coustom-btn{
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				height: 60px;
+				padding-top: 10px;
+				z-index: 10;
+			}
+			.coustom-btn .mui-btn-block{
+				padding:6px 0;
+				width: 90%;
+				margin: 0 auto;
+			}
+			.mui-content>div:last-child{
+				margin-bottom: 70px;
+			}
+			.mui-card-header{
+				font-size: 15px;
+			}
+			.coustom-a .mui-table-view-cell a{
+				white-space: inherit;
+				padding-right: 40px;
+			}
+			.mui-input-group.coustom-btn{
+				margin-bottom: 0 !important;
+			}
+			.mui-content>div:last-child {
+			    margin-bottom: 70px;
+			    position: absolute;
+			    width: 100%;
+			}
+			.ser-textarea{
+				top: 30px;
+			}
+			.mui-input-group.mui-active{
+				height: 50%;
+			}
+		</style>
+	</head>
+
+	<body class="tasks">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">执行完成</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group coustom-btn">
+				<button type="button" class="mui-btn mui-btn-green mui-btn-block">完成</button>
+			</div>
+			<div class="mui-input-group">
+			    <div class="mui-card-header mui-card-media">
+					<img id="icon" src="../img/icon9.png" />
+					<div class="mui-media-body">
+						<i id="name"></i>
+						<p id="time"></p>
+					</div>
+				</div>
+				<div class="mui-card-content coustom-a">
+					<div class="mui-table-view-cell">
+						<a id="title" class="mui-navigate-right" href="#"></a>
+					</div>
+					<div id="content" style="word-break:break-all;word-wrap:break-word;" class="mui-card-footer"></div>
+				</div>
+			</div>
+				
+				
+			<div class="mui-input-group mui-active">
+				<h5>描述：<span class="tips_wordLimit"></span></h5>
+				<div class="mui-input-row ser-textarea">
+					<textarea class="txt" id="" rows="4" placeholder="请填写描述内容,最多输入1000个文字" oninput = "ser_wordLimit(this,'submit');" maxlength="1000"></textarea>
+					<div class="uploadimg">
+						<ul class="device-img ">
+							<li class="upload-exception"><span class="upload-box"></span></li>
+							<li class="pre-text upload-exception">添加图片...</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<!-- 遮罩层 -->
+		<div class="mask-layer">
+			<div class="mui-loading">
+				<div class="mui-spinner">
+				</div>
+			</div>
+		</div>
+		<div id="mask-box" class="mask-box mask-box-hide">
+			<div class="mask-content">
+				<h3>选择操作<a class="icon-close"></a></h3>
+				<button onclick="photo()">拍照</button>
+				<button onclick="galleryImgs()">选择多张图片</button>
+			</div>
+		</div>
+	</body>
+
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script src="../../../js/mui/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mui/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script src="../../../js/mms-down-img.js"></script>
+	<script src="../../../js/mms-upload-photo.js"></script>
+	<script src="../../../js/mms-upload.js"></script>
+	<script src="../js/service.js"></script>
+	<script>
+
+		mui.init();
+		mui.plusReady(function() {
+			var values = plus.webview.currentWebview();
+			//任务id
+			var getType = values.passval_id;
+			var getState = values.icon;
+			var getTitle = values.title;
+			document.getElementById("title").innerText = getTitle;
+			queryElement("body").setAttribute("sid",getType)
+			//查询接口 显示内容 人名 时间等数据
+			service_mission(getType);
+		})
+		document.querySelector(".coustom-btn .mui-btn").addEventListener("tap",function() {
+			var obj = document.querySelector(".txt")
+			var reg = /^[^\'\s]*$/;
+			if(obj.value=="" || !reg.test(obj.value)){
+				mui.toast("描述内容不能为空并且不包含单引号");
+			}else{
+				getImg = mui(".imgs_boxs");
+				serCommonUploadJudge(findImg(getImg),suffix_img(getImg),"serSure")
+			}
+		})
+	</script>
+
+</html>

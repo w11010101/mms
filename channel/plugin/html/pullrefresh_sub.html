@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../css/mui/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/pull-more.css" />
+		<link rel="stylesheet" type="text/css" href="../../html/service/css/service.css" />
+		<script src="../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+	<style type="text/css">
+		.mms-chat-group .mui-media-body {
+			line-height: 42px;
+		}
+		
+		.note .mui-table {
+			width: 100% !important;
+		}
+	</style>
+
+	<body class="mms-draft">
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+
+				<ul class="mui-table-view mui-table-view-chevron">
+
+				</ul>
+			</div>
+		</div>
+
+		<script src="../../js/mui/mui.min.js"></script>
+		<script src="../../js/mms-common.js"></script>
+		<script src="../../js/mms-time.js"></script>
+		<script src="../../js/mms-pull-list.js"></script>
+		<script type="text/javascript" src="../../js/plugin/js/jquery.min.js"></script>
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			var objs = "";
+			var pages = 0;
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+
+				setTimeout(function() {
+					pages = 0;
+					mui.each(mui(".mui-table-view li"), function(i, e) {
+						e.remove();
+					});
+					pull_type(objs);
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					// 如果页面时草稿箱，就不需要上拉；
+					if(objs.type != "draft" && objs.type != "direc") {
+						pull_type(objs, ++pages);
+					} else {
+						mui.toast("无更多数据");
+					}
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+				}, 1500);
+			}
+
+			if(mui.os.plus) {
+				mui.plusReady(function() {
+					var value = plus.webview.currentWebview();
+					objs = JSON.parse(value.objs); // 接受从父级传来的本地存储的传参 localStorage.getItem("page-type")
+					pull_type(objs);
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+
+			function pull_type(obj, pages) {
+				// obj 基本可以当成调用借口的datas用，如有不同或某个值不对，可以 任意修改；
+				// object 删除写法  delete object.属性名
+				// object 赋值或添加某个值 写法 object.属性名
+				switch(obj.type) {
+					case "draft":
+						mui("body")[0].classList.add("mms-draft");
+						if(obj.page_name == "报修单" || obj.page_name == "服务") {
+							ser_draft_list(1, pages);
+						} else {
+							ser_draft_list(2, pages);
+						}
+						break;
+					case "chat":
+						mui("body")[0].classList.add("mms-chat-group");
+						mms_chat_list(pages);
+						localStorage.removeItem(getInterimID + "-locationHref");
+						break;
+					case "note":
+						mui("body")[0].classList.add("mms-note");
+						get_note(pages);
+						break;
+					case "direc":
+						mui("body")[0].classList.add("mms-direc");
+						cust_orgs_mission(pages);
+						break;
+					case "search":
+						mui("body")[0].classList.add("mms-search");
+						obj.page_index = pages == undefined ? 0 : pages;
+						search_type(obj);
+
+						break;
+					default:
+						break;
+				}
+			}
+			//			//点击机构获取机构id
+			function dic_listid() {
+				$(".mms-direc li").on("tap", function() {
+					$(".coustom_loading").show();
+					var typeid = $(this).attr("id");
+
+					if($(this).attr("dic_listid") == "true") {
+						if($(this).find(".custom-reset-padding").attr("vstate") == 0) {
+							mui.toast("此机构还未通过审核");
+							$(this).find("div").remove();
+						} else {
+							cust_orgs_user_mission(typeid);
+							$(this).attr("dic_listid", "false");
+						}
+					}
+				})
+			}
+			//点击编辑按钮
+			function disabledA() {
+				mui(".mms-direc").on("tap", ".mui-disabled .verify_edit", function() {
+
+					var otypesarry = new Array();
+					$(this).parent().next().find("h5 i").each(function(i) {
+						//得到每个otypeskey
+						otypesarry[i] = $(this).attr("otypeskey");
+					});
+
+					mui.openWindow({
+						url: "../../html/more/html/more-set-user-edit1.html",
+						createNew: true,
+						show: {
+							aniShow: "正在跳转",
+							aniShow: "slide-in-right", //页面显示动画，默认为”slide-in-right“；
+							duration: 300
+						},
+						extras: {
+							passval_id: $(this).parent().parent().attr("id"),
+							passval_name: $(this).parent().next().find("h4").text(),
+							passval_phone: $(this).parent().next().find("span").text(),
+							passval_key: otypesarry
+						}
+					});
+				})
+			}
+			// 重新获取数据
+			window.addEventListener("currentReFresh", function(event) {
+				mui.each(mui("ul li"), function(i, e) {
+					e.remove()
+				})
+				var type = event.detail.type;
+				switch(type) {
+					case "draft":
+						ser_draft_list(1, 0);
+						break;
+					case "note":
+						get_note(0);
+						break;
+					default:
+						break;
+				}
+			});
+		</script>
+	</body>
+
+</html>

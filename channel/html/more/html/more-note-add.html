@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>新中新运维监控云服务-渠道版-添加笔记</title>
+		<!-- 强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览 -->
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, minimal-ui">
+		<!-- iphone设备中的safari私有meta标签，它表示：允许全屏模式浏览 -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" href="../../../css/plugin/style.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" href="../css/more.css" />
+		<link rel="stylesheet" href="../css/more-note-add.css" />
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav a-link">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">添加笔记</h1>
+			<a id="note_save" class="mui-btn mui-btn-link mui-pull-right">保存</a>
+		</header>
+		<div class="mui-content">
+			<div class="text">
+				<div class="publish-article-title">
+					<input type="text" id="title" class="w100" placeholder="标题" maxlength="50">
+					<i id="time">****</i>
+				</div>
+				<div class="publish-article-content">
+					<input type="hidden" id="target">
+					<div class="article-content" id="content">
+					</div>
+					<div class="footer-btn g-image-upload-box">
+						<div class="upload-button">
+							<span class="upload"><i class="upload-img"></i>插入图片</span>
+							<input class="input-file" id="imageUpload" type="file" name="fileInput" capture="camera" accept="image/*" style="position:absolute;left:0;opacity:0;width:100%;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 遮罩层 -->
+		<div class="mask-layer">
+			<div class="mui-loading">
+				<div class="mui-spinner">
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../js/mui/mui.min.js" ></script>
+	<script type="text/javascript" src="../../../js/plugin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../js/mms-common.js" ></script>
+	<script type="text/javascript" src="../../../js/mms-pull-list.js"></script>
+	<script type="text/javascript" src="../../../js/plugin/js/artEditor.min.js" ></script>
+	<script type="text/javascript" src="../js/arteditor.js" ></script>
+	<script type="text/javascript" charset="UTF-8">
+		mui.init({
+			beforeback: function(){
+				//获得列表界面的webview
+				var list = plus.webview.getWebviewById('pullrefresh_sub.html');
+				//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+				mui.fire(list,'refresh');
+				//返回true，继续页面关闭逻辑
+				return true;
+			}
+		});
+		
+		window.onresize = function(){
+			var hei=document.body.clientHeight;
+			$(".article-content").css("height",hei-189+"px");
+		}
+		var myDate = new Date();
+		var mytime=myDate.toLocaleTimeString();
+		document.getElementById("time").innerText=mytime;
+		var hei=document.body.clientHeight;
+		$(".article-content").css("height",hei-190+"px");
+		//提交笔记
+		$("#note_save").on("tap",function(){
+			$(".mask-layer").show(0)
+			if($("#title").val()==""){
+				mui.toast("请填写标题");
+				$(".mask-layer").hide(0);
+				return;
+			}if($("#target").val()==""){
+				mui.toast("请填写内容");
+				$(".mask-layer").hide(0);
+				return;
+			}else{
+				note_add_mission();
+			}
+		})
+		
+	</script>
+
+</html>

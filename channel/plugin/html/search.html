@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>搜索</title>
+		<link rel="stylesheet" type="text/css" href="../../css/mui/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/mms-common.css" />
+		<script src="../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.mui-scroll-wrapper {
+			top: 45px;
+		}
+		
+		.mui-bar .mui-search {
+			position: absolute;
+			color: #000;
+			right: 50px;
+			left: 40px;
+			display: inline-block;
+			width: auto;
+			margin: 0;
+			z-index: 9999;
+		}
+		
+		.mui-search input {
+			border: 1px solid #CCCCCC;
+		}
+		
+		input[type=search] {
+			margin-bottom: 0 !important;
+			background-color: #fff;
+		}
+		
+		.more-manual .mui-ellipsis {
+			color: #000;
+		}
+		
+		.more-progressbar-hide .mui-progressbar {
+			background: #fff;
+		}
+		
+		.more-faq-title {
+			font-size: 16px;
+			font-weight: normal;
+		}
+		
+		.more-faq .mui-media-body h2,
+		.more-faq .mui-media-body p {
+			padding: 0 0 0 25px;
+		}
+		
+		.more-faq .mui-media-body:before,
+		.more-faq .mui-media-body:after {
+			content: "";
+			width: 15px;
+			height: 17px;
+			position: absolute;
+		}
+		
+		.more-faq .mui-media-body:before {
+			background: url(../../html/more/img/more-q.png) no-repeat;
+			background-size: cover;
+			top: 17px;
+		}
+		
+		.more-faq .mui-media-body:after {
+			background: url(../../html/more/img/more-a.png) no-repeat;
+			background-size: cover;
+			top: 40px;
+		}
+		
+		.mui-pull-bottom-tips {
+			display: none;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<div class="mui-input-row mui-search">
+				<input type="search" class="mui-input-clear" placeholder="">
+			</div>
+			<button id="search" class="mui-btn mui-btn-link mui-pull-right">搜索</button>
+			<!--<h1 class="mui-title">搜索</h1>-->
+		</header>
+		<div class="mui-content">
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<!--数据列表-->
+					<ul class="mui-table-view ">
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mms-common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui/mui.pullToRefresh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/mui/mui.pullToRefresh.js" type="text/javscript" charset="utf-8"></script>
+		<script src="../../js/mms-search.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../html/more/js/more-downFile.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.plusReady(function() {
+
+				var parameter = JSON.parse(localStorage.getItem("page-type"));
+				// 搜索方法
+				// 监听软键盘换行
+				mui("body").off("keydown").on("keydown", "input", function(e) {
+					if(e.keyCode == 13) {
+						search_parameter();
+						mui("input[type=search]")[0].blur();
+					}
+
+				}, false);
+				// 点击标题上的搜索
+				mui("body").on("tap", "#search", function() {
+					search_parameter();
+				})
+
+				function search_parameter() {
+					if(parameter.name == "more") {
+						parameter.title = mui("input[type=search]")[0].value;
+					} else {
+						parameter.name = mui("input[type=search]")[0].value;
+					}
+					mui("input[type=search]")[0].blur();
+					parameter.page_index = 0;
+					mui.each(mui(".mui-scroll ul li"), function(i, e) {
+						e.remove();
+					});
+					search_type(parameter);
+					queryElement(".mui-pull-bottom-tips").style.display = "block";
+					return false;
+				}
+			})
+			var page_index = 0;
+			mui.init();
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			});
+			mui.ready(function() {
+				var objtext = ".mui-scroll-wrapper .mui-scroll";
+				mui.each(document.querySelectorAll(objtext), function(index, pullRefreshEl) {
+					mui(pullRefreshEl).pullToRefresh({
+						up: {
+							callback: function() {
+								var self = this;
+								mui(".mui-pull-bottom-tips")[0].style.display = "block";
+								setTimeout(function() {
+									if(mui("input[type=search]")[0].value) {
+										var parameter = JSON.parse(localStorage.getItem("page-type"));
+										parameter.page_index = ++page_index;
+										parameter.name = mui("input[type=search]")[0].value;
+										search_type(parameter);
+
+									} else {
+										mui.toast("请输入搜索关键字");
+									}
+									self.endPullUpToRefresh();
+								}, 1000);
+							}
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+
+</html>

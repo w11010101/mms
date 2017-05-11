@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>补充说明</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" href="../../../css/mms-common.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-upload.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/plugin/imageviewer.css" />
+		<script src="../../../js/mms-word-limit.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		html, body {
+		    height: 100%;
+		    font-family: "微软雅黑";
+		}
+		.mui-fullscreen {
+			height: auto !important;
+		}
+		
+		.mask-box .mask-content h3:before {
+			background: none;
+		}
+		
+		.mui-content-div {
+			width: 90%;
+			left: 50%;
+			margin-left: -45%
+		}
+		
+		.mui-btn-block {
+			padding: 0;
+			height: 100%;
+			background: #00AF25;
+			border: #00AF25
+		}
+		
+		.mui-content .mui-title {
+			background: #fff;
+			color: #000!important;
+			margin: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			padding: 0 10%
+		}
+		
+		.mask-layer {
+			display: none;
+		}
+		
+		.ser-illustrate #slider {
+			top: 0px;
+			overflow: auto;
+		}
+	</style>
+	<body class="ser-illustrate">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">补充说明</h1>
+		</header>
+		<div class="mui-content">
+			<h2 class="mui-title">adfa</h2>
+			<div id="slider" class="mui-active mui-slider mui-fullscreen">
+				<div class="mui-input-row ser-textarea">
+					<textarea id="" rows="4" placeholder="请填写描述内容..." oninput = "ser_wordLimit(this,'other');" maxlength="200"></textarea>
+					<span class="tips_wordLimit"></span>
+					<div class="uploadimg">
+						<ul class="device-img">
+							
+							<li class="upload-exception"><span class="upload-box"></span></li>
+							<li class="pre-text upload-exception">添加描述图片...</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- mask layer 遮罩层 -->
+			<div class="mask-layer">
+				<div class="mui-loading">
+					<div class="mui-spinner ">
+					</div>
+				</div>
+			</div>
+			<div id="mask-box" class="mask-box mask-box-hide">
+				<div class="mask-content">
+					<h3>选择操作<a class="icon-close"></a></h3>
+					<button onclick="photo()">拍照</button>
+					<button onclick="galleryImgs()">选择多张图片</button>
+				</div>
+			</div>
+			<div id="block-ok" class="mui-content-div">
+				<button id="ser-illustrate-btn" type="button" class="mui-btn mui-btn-success mui-btn-block">完成</button>
+			</div>
+		</div>
+	</body>
+
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script src="../../../js/mui/mui.picker.min.js"></script>
+	<script src="../../../js/mui/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mui/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script src="../js/service.js"></script>
+	<script src="../../../js/mms-upload-photo.js"></script>
+	<script src="../../../js/mms-upload.js"></script>
+
+	<script>
+		mui.plusReady(function() {
+			var value = plus.webview.currentWebview();
+			mui(".mui-content .mui-title")[0].innerHTML = value.service_title;
+			queryElement("body").setAttribute("ser_id",value.service_id);
+		})
+		var btn = queryElement('#block-ok');
+		window.addEventListener('resize', function() {
+			btn.style.display = document.body.clientHeight > 400 ? 'block' : 'none';
+		}, false);
+		mui.init();
+		mui("body").on("tap", "#ser-illustrate-btn", function() {
+			//补充说明
+			var ser_parameter = {};
+			ser_parameter.type = "supplement";
+			ser_parameter.value = document.querySelector("textarea").value;
+			queryElement("textarea").blur();
+			getImg = mui(".imgs_boxs");
+			serCommonUploadJudge(findImg(getImg), suffix_img(getImg), "supplement");
+			
+		});
+
+	</script>
+
+</html>

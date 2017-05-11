@@ -1,0 +1,201 @@
+html {
+	font-size: 62.5%;
+	/* 10÷16=62.5% */
+}
+
+body {
+	font-size: 12px;
+	font-size: 1.2rem;
+	font-family: "微软雅黑";
+	/* 12÷10=1.2 */
+}
+
+p {
+	font-size: 14px;
+	font-size: 1.4rem;
+}
+
+.mui-control-content {
+/*	background-color: white;*/
+}
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.mui-content{
+	padding: 46px 0 0 0 !important;
+}
+.mui-control-content .mui-loading {
+	margin-top: 5rem;
+}
+
+.mui-slider-group {
+	margin-top: 1rem;
+}
+
+.mui-slider-progress-bar {
+	height: .3rem;
+	/*margin-top: -.3rem;*/
+	z-index: 9;
+}
+
+/*.mui-slider-indicator.mui-segmented-control {
+	border-bottom: 1px solid #999999;
+}*/
+
+.mui-input-group:before {
+	background-color: #FFFFFF;
+}
+
+.mui-input-row label {
+	font-size: 1.5rem;
+	text-align: right;
+	padding-right: 2rem;
+	padding-left: 0;
+	line-height: 2.4rem;
+	color: #000000;
+	font-family: "微软雅黑";
+}
+/*.mui-segmented-control.mui-scroll-wrapper{
+	height: 4.5rem;
+}*/
+/*.mui-segmented-control.mui-scroll-wrapper .mui-control-item{
+	padding: .5rem 2rem;
+	font-size: 1.8rem;
+}*/
+.item1mobile {
+	height: 27.2rem !important;
+}
+
+.item2mobile {
+	height: 13.6rem !important;
+}
+
+.mui-input-row label~input {
+	font-size: 1.5rem;
+	font-family: "微软雅黑";
+	line-height: 2rem;
+}
+
+.mui-input-group .mui-input-row:after {
+	left: 0rem;
+}
+/*.mui-fullscreen .mui-segmented-control~.mui-slider-group{
+	top: 4.5rem;
+}*/
+
+.mui-input-group .mui-input-row {
+	height: 4.5rem;
+}
+
+input[type=text],input[type=password] {
+	padding: 2.2rem 1.5rem;
+}
+
+.custom-padding {
+	padding: 11px 15px 11px 0 !important;
+}
+.mui-input-row label.custom-padding~input{
+	
+}
+.custom-color::-webkit-input-placeholder,.custom-color-val{
+	color: #222222;
+}
+.mui-btn-block{
+	position: fixed;
+	bottom: 0;
+	width: 90%;
+	margin-left: 5%;
+	padding: 10px 0;
+	border-radius: .5rem;
+	z-index: 9;
+}
+
+.mui-btn-success{
+	border-color:#00AF26 ;
+	background-color: #00AF26;
+	font-family: "微软雅黑";
+}
+
+.item1mobile .mui-input-row label,.custom-more .mui-input-row label{
+	width: 28%;
+	font-family: "微软雅黑";
+}
+.item1mobile .mui-input-row label~input,.custom-more .mui-input-row label~input{
+	width: 72%;
+}
+
+
+/*相关添加用户页面的弹出框样式*/
+
+.mui-picker,.mui-poppicker-header{
+	background-color: #FFFFFF !important;
+	padding: 0 !important;
+}
+.mui-poppicker-btn-cancel,.mui-poppicker-btn-ok{
+	padding:1rem !important;
+	width: 50%;
+	border: none;
+	border-radius: 0;
+	font-size: 1.7rem !important;
+}
+.mui-poppicker-btn-ok{
+	background-color: #00AF26;
+}
+.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
+	border-bottom: none !important;
+}
+.mui-bar-nav ~.mui-content .mui-slider.mui-fullscreen .mui-segmented-control ~ .mui-slider-group .mui-scroll-wrapper{
+	padding-top: 0;
+}
+.more-add .mui-slider .mui-slider-group .mui-slider-item i{
+	position: absolute;
+	width: 35px;
+	height: 35px;
+	margin-top: .4rem;
+	/*background:url(/storage/emulated/0/Android/data/io.dcloud.HBuilder/.HBuilder/apps/HBuilder/doc/1462960092960.jpg) no-repeat;*/
+	background-size: 35px;
+}
+.more-add .mui-input-group{
+	margin-top: 3px;
+}
+.mui-input-row img{
+	border-style: none;
+}
+/*用户编辑页面复选框部分*/
+.custom-more .mui-input-row.mui-input-group{
+	height: 275px !important;
+}
+.custom-more .mui-input-row.mui-checkbox label~input{
+	width: 28px;
+	top: 10px;
+}
+.custom-more .mui-input-row.mui-checkbox{
+	margin-left: 100px;
+	top: -50px;
+}
+.custom-more .mui-input-group .mui-input-row.mui-checkbox:after{
+	background-color: #FFFFFF;
+}
+.more-add .mui-input-row label{
+	width: 80%;
+	text-align: left;
+}
+.more-add .mui-input-row.mui-checkbox label~input{
+	top: 10px;
+}
+i{
+	font-style: normal;
+	padding-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+

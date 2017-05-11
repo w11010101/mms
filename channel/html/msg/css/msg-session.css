@@ -1,0 +1,102 @@
+li{
+	margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.mui-icon-back:before, .mui-icon-left-nav:before{
+	content:""
+}
+.mui-bar .mui-icon {
+    font-size: 17px;
+    position: relative;
+    z-index: 20;
+    padding-top: 14px;
+    padding-bottom: 13px;
+}
+.mui-bar .msg-send{
+	font-size: 24px;
+    z-index: 2;
+    padding: 0;
+    margin:0;
+    width: 45px;
+    height: 45px;
+    background: url(../img/svg/icon-bar-nav.svg) no-repeat;
+    background-position: 15px -145px;
+}
+.mui-bar .mui-btn.mui-pull-right{
+	margin: 0;
+}
+.msg-session-input{
+	font-size: 16px;
+	border:none!important;
+	border-radius: 0!important;
+	border-bottom: 1px solid #ccc!important;
+	margin-bottom:0!important;
+}
+
+.msg-participants-add{
+	position: absolute;
+    top: 8px;
+    margin-top: 0;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/svg/icon-session-bar.svg);
+    background-position: center -103px;
+    right: 5px;
+    z-index: 10;
+}
+.mui-input-row {
+    padding: 10px 0px 5px 90px;
+    width: 100%;
+    box-sizing: padding-box;
+    -webkit-box-sizing: padding-box;
+    position: relative;
+    height: auto!important;
+}
+.mui-input-row label {
+    width: 90px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    float: none;
+    line-height: 30px;
+    padding: 0 15px;
+}
+.msg-participants {
+    display: inline-block;
+    padding: 0px 50px 0px 0px;
+    margin: 0;
+    vertical-align: middle;
+    height: 25px;
+    overflow-y: hidden;
+    font-size: 15px;
+    line-height: 25px;
+}
+.msg-participants li {
+    display: inline-block;
+    margin-right: 4px;
+}
+.msg-participants-show + .msg-participants-add {
+	display: none;
+}
+.msg-participants-show li {
+	padding: 2px 0px 2px 5px;
+	margin: 0px 2px 2px 0;
+	border: 1px solid #ccc;
+}
+
+.msg-participants-show li i {
+	display: block;
+	width: 20px;
+	height: 21px;
+	float: right;
+	background: url(../img/icon-close.png) no-repeat center right 5px;
+	background-size: 10px;
+	font-size: 0
+}
+.msg-participants-show {
+	z-index: 20;
+	padding: 5px;
+	height: auto!important;
+}
+

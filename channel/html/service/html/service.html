@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>服务</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" href="../../../css/mms-common.css">
+		<link rel="stylesheet" href="../css/service.css">
+		<link rel="stylesheet" href="../css/top-popover-li.css">
+		<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.coustom-2 {
+			width: 50%;
+		}
+		.service-li-a {
+			line-height: 30px;
+		}
+	</style>
+
+	<body class="service a-link" id="servicePage">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon icon-filter mui-pull-right" href="#topPopover"></a>
+			<a class="mui-icon icon-search mui-pull-right" href="../../../plugin/html/search.html" page-type="search" page-name="服务"></a>
+			<h1 class="mui-title">服务</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item " href="../../msg/html/msg.html">
+				<span class="mui-icon icon-bar-news"></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item">
+				<span class="mui-icon icon-bar-service">
+					<!--<span class="mui-badge">9</span>-->
+				</span>
+				<span class="mui-tab-label">服务</span>
+			</a>
+			<em class="mui-tab-item mms-sectors-nav">
+				<i class="mms-screen-mask"></i>
+				<span class="btn-menu"><i class="icon-plus"></i></span>
+				<a href="../../../plugin/html/pullrefresh_main.html" id="mms-sectors-nav-1" class="" type = "note" page_name="笔记">
+					<span>
+						<i class="mui-icon icon-bar-note"></i>
+					</span>笔记
+				</a>
+				<a href="../../../plugin/html/pullrefresh_main.html" id="mms-sectors-nav-3" class="" type = "draft" page_name="服务">
+					<span>
+						<i class="mui-icon icon-bar-task"></i>
+					</span>服务
+				</a>
+				<!--<a href="../../msg/html/msg-session.html" id="mms-sectors-nav-3">
+					<span>
+						<i class="mui-icon icon-bar-chat"></i>
+					</span>会话
+				</a>-->
+			</em>
+			<a class="mui-tab-item" href="../../statistic/html/statistic.html">
+				<span class="mui-icon icon-bar-statistic"></span>
+				<span class="mui-tab-label">统计</span>
+			</a>
+			<a class="mui-tab-item mui-active" href="../../more/html/more.html">
+				<span class="mui-icon icon-bar-more"></span>
+				<span class="mui-tab-label">更多</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<!--右上角弹出菜单-->
+			<div id="topPopover" class="mui-popover">
+				<div class="mui-popover-arrow"></div>
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul id="ser-condition" class="mui-table-view">
+							<li id="" class="mui-table-view-cell">
+								<a href="#">全部</a>
+							</li>
+							<li id="2" class="mui-table-view-cell">
+								<a href="#">申请</a>
+							</li>
+							<li id="4" class="mui-table-view-cell">
+								<a href="#">受理</a>
+							</li>
+							<li id="8" class="mui-table-view-cell">
+								<a href="#">安排任务</a>
+							</li>
+							<li id="16" class="mui-table-view-cell">
+								<a href="#">执行中</a>
+							</li>
+							<li id="32" class="mui-table-view-cell">
+								<a href="#">待确认</a>
+							</li>
+							<li id="64" class="mui-table-view-cell">
+								<a href="#">完成</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1mobile">运维报修</a>
+						<a class="mui-control-item" href="#item2mobile">个性化需求
+							<!-- <span class="mui-badge mui-badge-danger badge-rounded"></span> -->
+						</a>
+					</div>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4 coustom-2"></div>
+				<div id="list" class="mui-slider-group a-link">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul id="service_mission_list" class="mui-table-view service-lis" pages="0" mtype="1">
+								
+								</ul>
+								<div class="mui-loading">
+									<div class="mui-spinner">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul id="service_mission_list1" class="mui-table-view" pages="0" mtype="2">
+
+								</ul>
+								<div class="mui-loading">
+									<div class="mui-spinner">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--搜索结果容器-->
+		<div id="seach-div" class="mui-slider-item mui-control-content mui-slider-group">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul id="service-search" class="mui-table-view" pages="0">
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script src="../../../js/mui/mui.pullToRefresh.js"></script>
+	<script src="../../../js/mui/mui.pullToRefresh.material.js"></script>
+	<script src="../../../js/mui/mui.lazyload.js"></script>
+	<script src="../../../js/mui/mui.lazyload.img.js"></script>
+	<script src="../../../js/mui/mui.previewimage.js"></script>
+	<script src="../../../js/mui/mui.zoom.js"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script src="../js/service.js"></script>	
+	<script src="../../../js/mms-nav.js"></script>
+	<script src="../../../js/mms-common-back.js" type="text/javascript" charset="utf-8"></script>
+	<script charset="UTF-8">
+		var deceleration = mui.os.ios ? 0.003 : 0.0009;
+		mui('.mui-scroll-wrapper').scroll({
+			bounce: true, // 是否滑动反弹
+			indicators: true, //是否显示滚动条
+			deceleration: deceleration
+		});
+		var parameter = {
+			mtype: 1,
+			executor_id: getInterimID,
+			state: "",
+			page_index: 0,
+			page_size: 10
+		}
+		var pullParameter = {};
+
+		mui.plusReady(function() {
+			service_list(parameter);
+		})
+		
+		service_screen();
+		
+		document.getElementById('slider').addEventListener('slide', function(e) {
+	
+			parameter.state = ""
+			if (e.detail.slideNumber === 0) {
+				
+			} else if (e.detail.slideNumber === 1) {
+				var this_active = mui("#item2mobile ul li");
+		
+				parameter.mtype = 2;
+				parameter.page_index = 0;
+		
+				if(this_active.length == 0) {
+					service_list(parameter);
+				}
+			}
+		});
+		// 标题跳转
+		mui("header").on("tap","a",function(){
+			var href = this.getAttribute("href");
+			if(href && ~href.indexOf(".html")) {
+				if(this.classList.contains("icon-search")) {
+					pullParameter.mtype = mui("#list .mui-active ul")[0].getAttribute("mtype");
+					pullParameter.page_index = 0;
+					pullParameter.search_type = "service";
+					pullParameter.executor_id = getInterimID;
+					localStorage.setItem("page-type", JSON.stringify(pullParameter));
+				}
+				jump(href,pullParameter);
+			}
+		})
+		
+		// 点击事件
+		mui("body").on("tap", "a.serivce-pass", function() {
+			var href = this.getAttribute("href");
+			if(href && ~href.indexOf(".html")) {
+				jump(href,{
+					passval_id: this.parentElement.getAttribute("passval_id"),
+					icon: this.getAttribute("icon"),
+					title: this.previousElementSibling.lastElementChild.firstElementChild.innerText,
+				});
+			}
+		})
+		mui("body").on("tap", "a.coustom-position", function() {
+			var href = this.getAttribute("href");
+				if(href && ~href.indexOf(".html")) {
+					jump(href,{
+					passval_id: this.parentElement.getAttribute("passval_id"),
+					type: this.getAttribute("page-type"),
+					pageName: this.getAttribute("page-name")
+				});		
+			}
+		});
+	</script>
+
+</html>

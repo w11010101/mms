@@ -1,0 +1,29 @@
+.text{
+	width:100%;margin: 0 auto;
+}
+.publish-article-title{
+	padding-bottom: 20px;
+}
+.text .publish-article-title i{
+	float: right;
+	font-size: 13px;
+	color: #AAAAAA;
+	margin-top: -7px;
+}
+.text .publish-article-title input,.publish-article-content .article-content{
+	border: none;
+	border-bottom: 1px solid #ccc;
+	font-size: 16px;
+}
+.publish-article-content img{
+	width: 100% !important;
+}
+ input[type=text]{
+ 	padding: 10px 0;
+ }
+body,html{
+	height: 100% !important;
+}
+.upload-button .upload{
+	text-align: center;
+}

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>统计分析</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/statistic.css"/>
+		<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	
+	<body class="statistic" >
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">统计分析</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item " href="../../msg/html/msg.html" label="消息">
+				<span class="mui-icon icon-bar-news"></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item " href="../../service/html/service.html" label="服务">
+				<span class="mui-icon icon-bar-service">
+				<!-- <span class="mui-badge">9</span> -->
+				</span>
+				<span class="mui-tab-label">服务</span>
+			</a>
+			<em class="mui-tab-item mms-sectors-nav">
+				<i class="mms-screen-mask"></i>
+				<span class="btn-menu"><i class="icon-plus"></i></span>
+				<a href="../../../plugin/html/pullrefresh_main.html" id="mms-sectors-nav-1" class="" type = "note" page_name="笔记">
+					<span>
+						<i class="mui-icon icon-bar-note"></i>
+					</span>笔记
+				</a>
+				<a href="../../../plugin/html/pullrefresh_main.html" id="mms-sectors-nav-3" class="" type = "draft" page_name="服务">
+					<span>
+						<i class="mui-icon icon-bar-task"></i>
+					</span>服务
+				</a>
+				<!--<a href="../../msg/html/msg-session.html" id="mms-sectors-nav-3">
+					<span>
+						<i class="mui-icon icon-bar-chat"></i>
+					</span>会话
+				</a>-->
+			</em>
+			<a class="mui-tab-item mui-active" label="统计分析">
+				<span class="mui-icon icon-bar-statistic"></span>
+				<span class="mui-tab-label">统计</span>
+			</a>
+			<a class="mui-tab-item" href="../../more/html/more.html" label="更多">
+				<span class="mui-icon icon-bar-more"></span>
+				<span class="mui-tab-label">更多</span>
+			</a>
+		</nav>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen statistic-slider">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1mobile">
+							本周
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							本月
+						</a>
+						<a class="mui-control-item" href="#item3mobile">
+							本季
+						</a>
+						<a class="mui-control-item" href="#item4mobile">
+							本年
+						</a>
+						<a class="mui-control-item" href="#item5mobile">
+							全部
+						</a>
+						<a class="mui-control-item " href="#item6mobile">
+							其他
+						</a>
+						<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-2"></div>
+					</div>
+					
+				</div>
+				
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<ul class="mui-table-view mui-grid-view sta-grid-view">
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务数量(件)</h5>
+								<!-- <i class="icon-service-num"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务满意度(分)</h5>
+								<!-- <i class="icon-service-satisfaction"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务响应时间(小时)</h5>
+								<!-- <i class="icon-service-responding "> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5>服务周期(天)</h5>
+								<!-- <i class="icon-service-period"></i> -->
+								<p></p>
+							</li>
+						</ul>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<ul class="mui-table-view mui-grid-view sta-grid-view">
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务数量(件)</h5>
+								<!-- <i class="icon-service-num"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务满意度(分)</h5>
+								<!-- <i class="icon-service-satisfaction"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务响应时间(小时)</h5>
+								<!-- <i class="icon-service-responding "> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5>服务周期(天)</h5>
+								<!-- <i class="icon-service-period"></i> -->
+								<p></p>
+							</li>
+						</ul>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<ul class="mui-table-view mui-grid-view sta-grid-view">
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务数量(件)</h5>
+								<!-- <i class="icon-service-num"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务满意度(分)</h5>
+								<!-- <i class="icon-service-satisfaction"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务响应时间(小时)</h5>
+								<!-- <i class="icon-service-responding "> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5>服务周期(天)</h5>
+								<!-- <i class="icon-service-period"></i> -->
+								<p></p>
+							</li>
+						</ul>
+					</div>
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
+						<ul class="mui-table-view mui-grid-view sta-grid-view">
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务数量(件)</h5>
+								<!-- <i class="icon-service-num"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务满意度(分)</h5>
+								<!-- <i class="icon-service-satisfaction"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务响应时间(小时)</h5>
+								<!-- <i class="icon-service-responding "> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5>服务周期(天)</h5>
+								<!-- <i class="icon-service-period"></i> -->
+								<p></p>
+							</li>
+						</ul>
+					</div>
+					<div id="item5mobile" class="mui-slider-item mui-control-content">
+						<ul class="mui-table-view mui-grid-view sta-grid-view">
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务数量(件)</h5>
+								<!-- <i class="icon-service-num"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务满意度(分)</h5>
+								<!-- <i class="icon-service-satisfaction"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5></i>服务响应时间(小时)</h5>
+								<!-- <i class="icon-service-responding "> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5>服务周期(天)</h5>
+								<!-- <i class="icon-service-period"></i> -->
+								<p></p>
+							</li>
+						</ul>
+					</div>
+					<div id="item6mobile" class="mui-slider-item mui-control-content ">
+						<div class="sta-date-boxs">
+							<div class="input-row datepicker pickDate1">
+								<label>起始日期：</label><em></em>
+							</div>
+							<div class="input-row datepicker pickDate2">
+								<label>结束如期：</label><em></em>
+							</div>
+							<button type="button" class="mui-btn mui-btn-blue">确定</button>
+						</div>
+						<ul class="mui-table-view mui-grid-view sta-grid-view">
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5>服务数量(件)</h5>
+								<!-- <i class="icon-service-num"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5>服务满意度(分)</h5>
+								<!-- <i class="icon-service-satisfaction"> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5>服务响应时间(小时)</h5>
+								<!-- <i class="icon-service-responding "> -->
+								<p></p>
+							</li>
+							<li class="mui-table-view-cell mui-col-xs-6">
+								<h5>服务周期(天)</h5>
+								<!-- <i class="icon-service-period"></i> -->
+						
+								<p></p>
+							</li>
+						</ul>
+					</div> 	
+				</div>
+			</div>
+		</div>
+	</body>
+	
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script src="../../../js/mms-common-back.js"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script src="../../../js/mms-nav.js"></script>
+	<script src="../js/statistic.js"></script>
+	<script type="text/javascript">
+		// H5 plus事件处理
+		function plusReady() {}
+		if (window.plus) {
+			plusReady();
+		} else {
+			document.addEventListener("plusready", plusReady, false);
+		}
+
+
+		// 选择日期
+		var dates;
+		mui(".sta-date-boxs").on("tap", ".pickDate1",function() {
+			var that = this;
+			var dDate = new Date();
+			var maxDate = new Date();
+			maxDate.setFullYear(dDate.getFullYear(),dDate.getMonth(),dDate.getDate());
+			
+			plus.nativeUI.pickDate(function(e) {
+				var d = e.date;
+				that.children[1].innerHTML = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+			}, function(e) {}, {
+				maxDate: maxDate
+			});
+		})
+		mui(".sta-date-boxs").on("tap", ".pickDate2",function() {
+			var that = this;
+			var dDate = new Date();			
+			var text = mui(".pickDate1 em")[0].innerText.split("-");
+			var minDate = new Date();
+			minDate.setFullYear(text[0],text[1]-1, text[2]);
+			var maxDate = new Date();
+			maxDate.setFullYear(dDate.getFullYear(),dDate.getMonth(),dDate.getDate());
+			
+			plus.nativeUI.pickDate(function(e) {
+				var d = e.date;
+				that.children[1].innerHTML = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+			}, function(e) {}, {
+				minDate: minDate,
+				maxDate: maxDate
+			});
+		})
+
+		statistic(getInterimID,getWeekStartDate(),getWeekEndDate());
+	
+		mui("#sliderSegmentedControl").on("tap","a",function(){
+			if(this.innerText == "其它"){
+				mui(".sta-date-boxs")[0].style.display = "block";
+				mui(".sta-date-boxs")[0].nextElementSibling.style.display = "none";
+			}
+		})
+
+	</script>
+
+</html>

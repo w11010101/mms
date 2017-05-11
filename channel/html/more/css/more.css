@@ -1,0 +1,179 @@
+
+.mui-bar-nav [class*="icon-"]:not(.mui-pull-left) {
+    font-size: 24px;
+    z-index: 2;
+    padding: 0;
+    margin-top: 7px;
+    width: 28px;
+    height: 28px;
+    background-image: url(../../service/img/svg/icon-bar-nav.svg);
+}
+.more .mui-tab-item:nth-child(4) .icon-bar-service {
+    background-position: -50px -50px;
+}
+.more ul li img{
+	width: 25px;
+	height: 25px!important;
+}
+.more ul li .mui-media-body{
+	line-height: 25px;
+	font-size: 16px;;
+}
+.more ul:nth-child(2){
+	margin-top:15px ;
+}
+.mui-slider-indicator{
+	background: #fff;
+}
+.mui-fullscreen .mui-segmented-control~.mui-slider-group {
+    position: absolute;
+    top: 40px;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+}
+.more-faq-title{
+	font-size:16px;
+	font-weight: normal;
+}
+.mui-tab-faq .mui-media-body h2,.mui-tab-faq .mui-media-body p{
+	padding: 0 0 0 25px;
+}
+.mui-tab-faq .mui-media-body:before,.mui-tab-faq .mui-media-body:after{
+	content: "";
+	width: 15px;
+	height: 17px;
+	position: absolute;
+}
+.mui-tab-faq .mui-media-body:before{
+	background: url(../img/more-q.png) no-repeat;
+	background-size:cover;
+	top:17px;
+}
+.mui-tab-faq .mui-media-body:after{
+	background: url(../img/more-a.png) no-repeat;
+	background-size:cover;
+	top:40px;
+}
+.mui-tab-lib h4{
+	font-weight: 500;
+	font-size: 17px;
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.mui-tab-lib h5{
+	font-size: 15px;
+}
+.mui-tab-lib .mui-slider-handle a{
+	/*display: block;
+	color:#000;*/
+}
+.more-tab .mui-slider-handle{
+	margin-bottom:4px;
+}
+.more-tab .more-progressbar-hide .mui-progressbar{
+	background: #fff;
+}
+.more-tab .mui-table-view-cell{
+	padding: 11px 15px 5px 15px;
+}
+/* more-lib-info */
+
+.more-lib-info-title{
+	padding:15px;
+	background: #fff;
+	margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+.more-lib-info input{
+	border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    padding:10px 0;
+    font-family: "微软雅黑";
+}
+.more-lib-info-content{
+	padding:15px;
+	background: #fff;
+	border: 1px solid #ccc;
+	position:absolute;
+	top:170px;
+	bottom: 0;
+	width: 100%;
+}
+.article-content{
+	height: 100%;
+}
+#more-lib-info-time{
+	font-size:13px;
+	display: block;
+	text-align: right;
+	color:#AAAAAA;
+}
+.more-lib-info-content img{
+	width: 100% !important;
+}
+ input[type=text]{
+ 	padding: 10px 0;
+ }
+.more-setting ul{
+	
+}
+.more-set-id form label{
+	text-align: right;
+}
+.more-set-id .mui-input-group .mui-input-row:after{
+	left:0
+}
+.more-set-id button{
+	position: fixed;
+	bottom: 0;
+	padding: 10px 0;
+	width: 90%;
+	left:50%;
+	margin-left:-45%;
+	border-radius: .5rem;
+	transition-duration: 0s;
+}
+.more-set-id .more-btn-pwd{
+	bottom: 60px;
+}
+
+.mui-tab-manual .mui-ellipsis{
+	color:#000
+}
+.mui-tab-faq .mui-ellipsis{
+	white-space:normal
+}
+/*=================================select===========================================*/
+.select h4{
+	font-size: 16px;
+	background-color: #FFFFFF;
+	width: 100%;
+	height: auto;
+	padding: 11px 15px;
+	margin-top: 10px;
+	color: #333333!important;
+	font-weight: lighter;
+}
+.select .mui-input-group{
+	background-color: #FFFFFF;
+	margin-top: 10px;
+}
+.select .mui-input-group label{
+	font-size: 16px !important;
+}
+
+h4{
+	font-weight: 500;
+	font-size: 16px !important;
+	height: 25px;
+	padding-top: 5px;
+}
+
+.more-set-user i{
+	font-style: normal;
+	padding-right: 10px;
+}

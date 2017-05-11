@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>任务标题</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/plugin/imageviewer.css" />
+		<link rel="stylesheet" href="../../../css/mms-common.css" />
+		<title></title>
+	</head>
+	<style>
+		html,body,.mui-content{
+			height: 100%;
+		}
+		.ser-info-images {
+			font-size: 0;
+			background: #fff;
+		}
+		
+		.ser-info-images img {
+			width: 70%;
+			display: block;
+			margin: 20px auto;
+		}
+		.ser-info-images ul{
+			padding:0
+		}
+		.ser-info .ser-content h1 {
+			background: #fff;
+			text-align: center;
+			font-size: 18px;
+			padding: 10px 10%;
+			margin: 0;
+			border-bottom: 1px solid #ccc;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		
+		.ser-info .ser-content textarea {
+			margin: 0;
+			/*height: 100px;*/
+			font-size: 16px;
+		}
+		.ser-content-div{
+			background:#fff ;
+			padding: 10px 15px;
+		}
+		
+		.ser-info-images li {
+			width: 25%;
+			display: inline-block;
+		}
+		
+	</style>
+	<body class="ser-info">
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">服务详情</h1>
+		</header>
+		<div class="mui-content ser-content">
+			<h1></h1>
+			<div class="ser-content-div"></div>
+			<div class="ser-info-images">
+				<ul>
+					
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script src="../../../js/mui/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mui/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script type="text/javascript" src="../../../js/mms-down-img.js"></script>
+
+	<script>
+		var getType; //任务id
+		mui.plusReady(function() {
+			var values = plus.webview.currentWebview();
+			getType = values.passval_id;
+			serviceInfo(getType);
+		});
+		//图片浏览
+		mui.previewImage();
+		// 获取服务详情
+		function serviceInfo(id) {
+			var urls = mmsappurl.service.mission;
+			var datas = {
+				id: id
+			}
+			getAjax(urls, datas, service_info_success, fail_callback);
+
+			function service_info_success(data) {
+				var data = data.data;
+				mui(".ser-content h1")[0].innerHTML = data.name;
+				mui(".ser-content .ser-content-div")[0].value = "任务描述："+data.description;
+				if(data.img_urls != null){
+					var getImges = data.img_urls.split("|");
+					// 下载图片
+					var img_arr = down_imgs(getImges);
+					
+					for(var x = 0;x < img_arr.length;x++ ){
+						var createLi = document.createElement("li");
+						createLi.innerHTML = '<img src="'+img_arr[x]+'" alt="" data-preview-src="" data-preview-group="1" />';
+						mui(".ser-info-images ul")[0].appendChild(createLi);
+					}
+				}else{
+					mui.toast('暂无图片！');
+				}
+			}
+		}
+	</script>
+
+</html>

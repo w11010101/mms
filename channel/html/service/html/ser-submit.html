@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>任务申请</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/plugin/imageviewer.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-upload.css" />
+		<link rel="stylesheet" href="../css/task-application.css" />
+		<script src="../../../js/mms-word-limit.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.coustom-2 {
+			width: 50%;
+		}
+		
+		.mui-table-view-cell>a:not(.mui-btn) {
+			font-size: 15px;
+		}
+		
+		.mui-table-view .mui-media-object {
+			max-width: 30px;
+			height: 30px;
+		}
+		
+		#serviceschool .mui-media-body {
+			line-height: 30px;
+		}
+		
+		.mui-navigate-right a:active {
+			color: #5e5e5e;
+		}
+	</style>
+
+	<body class="ser-submit chm-ser-submit">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">服务</h1>
+			<button class="mui-btn mui-btn-link mui-pull-right ser-submit-btn">提交</button>
+		</header>
+		<div class="mui-content ">
+			<!--服务选择-->
+			<div id="servicetype" class="mui-popover">
+				<ul class="mui-table-view">
+					<li idval="servicetypeval" typeval="1" class="mui-table-view-cell">
+						<a href="#">运维报修</a>
+					</li>
+					<li idval="servicetypeval" typeval="2" class="mui-table-view-cell">
+						<a href="#">个性化需求</a>
+					</li>
+				</ul>
+			</div>
+			<!--学校选择-->
+			<div id="serviceschool" class="mui-popover">
+				<ul id="serviceschoollist" class="mui-table-view">
+
+				</ul>
+				<div class="mui-loading">
+					<div class="mui-spinner">
+					</div>
+					<p style="display: block;text-align: center;margin-top: 20px;">正在获取列表...</p>
+				</div>
+			</div>
+
+			<!--申请人选择-->
+			<div id="serviceapl" class="mui-popover">
+				<ul id="serviceapllist" class="mui-table-view">
+
+				</ul>
+				<div class="mui-loading">
+					<div class="mui-spinner">
+					</div>
+					<p style="display: block;text-align: center;margin-top: 20px;">请选择院校</p>
+				</div>
+			</div>
+
+			<!--系统设备选择-->
+			<div id="servicecate" class="mui-popover">
+				<ul class="mui-table-view">
+					<li idval="servicecateval" class="mui-table-view-cell">
+						<a href="#">系统</a>
+					</li>
+					<li idval="servicecateval" class="mui-table-view-cell">
+						<a href="#">设备</a>
+					</li>
+				</ul>
+			</div>
+			<!--这里放置真实显示的DOM内容-->
+
+			<div id="slider" class="mui-slider mui-fullscreen mui-slider-group">
+				<div class="mui-slider-group mui-active">
+					<div class="mui-input-group">
+						<div class="mui-input-row">
+							<span class="mui-navigate-right">
+								<label>服务：</label>
+								<a href="#servicetype" id="servicetypeval" class="mui-input openPopover">运维报修</a>
+							</span>
+						</div>
+						<div class="mui-input-row">
+							<span class="mui-navigate-right">
+								<label>院校：</label>
+								<a href="#serviceschool" id="serviceschoolval" class="mui-input openPopover">请选择</a>
+							</span>
+						</div>
+						<div class="mui-input-row">
+							<span class="mui-navigate-right">
+								<label>申请人：</label>
+								<a href="" id="serviceaplval" class="mui-input openPopover">请先选择院校</a>
+							</span>
+						</div>
+						<div class="mui-input-row">
+							<span class="mui-navigate-right">
+								<label>系统设备：</label>
+								<a href="#servicecate" id="servicecateval" class="mui-input openPopover">系统</a>
+							</span>
+						</div>
+						<div class="mui-input-row">
+							<span class="mui-navigate-right">
+								<label>系统名称：</label>
+								<input type="text"  id="servicenameval"  placeholder="请输入，最多输入20个文字" class="ser-text" value="" maxlength="20">
+							</span>
+						</div>
+						<h5>描述：<span class="tips_wordLimit"></span></h5>
+						<div class="mui-input-row ser-textarea">
+							<textarea id="" rows="4" placeholder="请填写描述内容,最多输入1000个文字" oninput="ser_wordLimit(this,'submit');" maxlength="1000"></textarea>
+							<div class="uploadimg">
+								<ul class="device-img ">
+
+									<li class="upload-exception"><span class="upload-box"></span></li>
+									<li class="pre-text upload-exception">添加图片...</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- mask layer 遮罩层 -->
+		<div class="mask-layer">
+			<div class="mui-loading">
+				<div class="mui-spinner ">
+				</div>
+			</div>
+		</div>
+		<div id="mask-box" class="mask-box mask-box-hide">
+			<div class="mask-content">
+				<h3>选择操作<a class="icon-close"></a></h3>
+				<button onclick="photo()">拍照</button>
+				<button onclick="galleryImgs()">选择多张图片</button>
+			</div>
+		</div>
+
+	</body>
+
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script type="text/javascript" src="../../../js/plugin/js/jquery.min.js"></script>
+	<script src="../../../js/mui/mui.previewimage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mui/mui.zoom.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script src="../../../js/mms-down-img.js"></script>
+	<script src="../../../js/mms-upload-photo.js"></script>
+	<script src="../../../js/mms-upload.js"></script>
+	<script src="../js/service.js"></script>
+	<script>
+		//图片浏览
+		//服务类型
+
+		mui.previewImage();
+		/*
+		 * 点击弹出框的li要做的事情
+		 */
+		mui(".mui-popover").on("tap", "li", function() {
+			var obj = this.getAttribute("idval")
+
+			queryElement("#" + obj).innerText = this.innerText;
+			mui('.mui-popover').popover('hide');
+
+		})
+		/*
+		 * 点击获取学校列表
+		 */
+		document.getElementById("serviceschoolval").addEventListener("tap", function() {
+			$("#serviceschoollist li").remove();
+			$("#serviceapllist li").remove();
+			cust_orgs_executed();
+		})
+		/*
+		 * 点击学校的li
+		 */
+		mui("#serviceschoollist").on("tap", "li", function() {
+
+			$("#serviceschoolval").text($(this).find("div").text());
+			$("#serviceschoolval").attr("name_id", $(this).attr("school_id"));
+
+			by_org_id($(this).attr("school_id"));
+			queryElement("#serviceaplval").setAttribute("href", "#serviceapl");
+		})
+		// 点击申请人判断
+		queryElement("#serviceaplval").addEventListener("tap", function(e) {
+
+			if(~queryElement("#serviceschoolval").innerHTML.indexOf("请选择")) {
+				mui.alert("请先选择院校");
+				//				mui(".mui-backdrop")[0].remove();
+				mui("#serviceapl")[0].removeAttribute("style");
+
+				return;
+			} else {
+				this.setAttribute("href", "#serviceapl");
+			}
+		})
+		/*
+		 * 点击申请人的li
+		 */
+		mui("#serviceapllist").on("tap", "li", function() {
+			$("#serviceaplval").attr("org_id", $(this).attr("org_id"));
+		})
+
+		var ser_task_id = false;
+		mui.plusReady(function() {
+			var value = plus.webview.currentWebview();
+			var id = value.thisID;
+			var mtype = value.mtype;
+			var page_name = value.page_name;
+			ser_task_id = id;
+			if(id) {
+				ser_query_draft(id);
+			} else {}
+
+			// 返回按钮 触发保存草稿
+			mui.back = function() {
+
+				ser_upload_task("draft");
+			}
+			// 提交按钮 触发提交
+			mui("header").on("tap", ".ser-submit-btn", function() {
+				ser_upload_task("submit");
+			})
+		})
+
+		function ser_upload_task(type) {
+			mui.each(mui("textarea,input[type=text]"), function(i, e) {
+				e.blur();
+			})
+			var btnArray = ['确认', '取消'];
+			var judge_state = judgeText();
+			if(judge_state.judge) {
+				mui.confirm(type == "draft" ? '是否保存成草稿？' : "是否提交？", '运维云平台', btnArray, function(e) {
+					if(e.index == 0) {
+						//确定
+						queryElement(".mask-layer").style.display = "block";
+						getImg = mui(".imgs_boxs");
+						serCommonUploadJudge(findImg(getImg), suffix_img(getImg), type == "draft" ? "serSaveDraft" : "serSubmit");
+					} else {
+						//取消
+						old_back();
+					}
+				});
+			} else {
+				if(type == "draft") {
+					old_back();
+				} else {
+					mui.toast(judge_state.tips + "不能为空！");
+				}
+			}
+
+		}
+		//查找草稿箱详情
+		function ser_query_draft(draft_id) {
+			var urls = mmsappurl.service.mission;
+			var datas = {
+				id: draft_id
+			}
+			getAjax(urls, datas, ser_query_draft_success, fail_callback);
+
+			function ser_query_draft_success(data) {
+				var getData = data.data;
+				if(data.errcode == 0) {
+					mui(".mui-active #servicetypeval")[0].innerHTML = getData.mtype == 1 ? "运维报修" : "个性化需求";
+
+					mui(".mui-active #serviceschoolval")[0].innerHTML = getData.req_org_name;
+					mui(".mui-active #serviceschoolval")[0].setAttribute("name_id", getData.req_org_id);
+
+					mui(".mui-active #serviceaplval")[0].innerHTML = getData.requester_name;
+					mui(".mui-active #serviceaplval")[0].setAttribute("org_id", getData.requester);
+					mui(".mui-active input[type=text]")[0].value = getData.target_name;
+					mui(".mui-active textarea")[0].value = getData.description;
+					mui(".mui-active #servicecateval")[0].innerHTML = getData == 0 ? "系统" : "设备";
+					if(getData.img_urls != null) {
+						var img_arr = getData.img_urls.split("|");
+						var img_base_arr = down_imgs(img_arr);
+						for(var x = 0; x < img_base_arr.length; x++) {
+							var createLi = document.createElement("li");
+							createLi.classList.add("imgs_boxs");
+							createLi.innerHTML = '<span><img src="' + img_base_arr[x] + '" alt="" data-preview-src="" data-preview-group="1"></span><i class="del"></i>';
+							mui(".mui-active .device-img")[0].insertBefore(createLi, mui(".mui-active .upload-exception")[0]); //insertBefore
+						}
+					}
+				} else {
+
+				}
+			}
+		}
+
+		var wHeight = window.innerHeight;
+		window.addEventListener("resize", function(e) {
+			if(this.innerHeight >= wHeight) {
+				mui('.mui-scroll-wrapper').scroll().scrollTo(0, 0, 100);
+			} else {
+				mui('.mui-scroll-wrapper').scroll().scrollTo(0, -44, 100);
+			}
+		})
+	</script>
+
+</html>

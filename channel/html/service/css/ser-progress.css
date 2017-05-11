@@ -1,0 +1,318 @@
+.mui-row.mui-fullscreen>[class*="mui-col-"] {
+	height: 100%;
+}
+.mui-bar-nav{
+	background: #0A569D;
+}
+.mui-bar-nav .mui-title{
+	color:#fff;
+}
+.mui-icon-back:before, .mui-icon-left-nav:before{
+	color:#fff;
+}
+.mui-bar-nav~.mui-content{
+	padding-top:90px;
+}
+.title-name{
+	font-size: 17px;
+	color:#000;
+	text-align: center;
+	background: #fff;
+	height: 45px;
+	padding:0 10%;
+	line-height: 45px;
+	margin: 0;
+	border-bottom: 1px solid #BFBFBF;
+	position: absolute;
+	top:45px;
+	width: 100%;
+	z-index: 9;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.mui-col-xs-3,
+.mui-col-xs-9 {
+	overflow-y: auto;
+	height: 100%;
+}
+.mui-col-xs-3{
+	width: 17%;
+	/*padding-top:45px;*/
+}
+.mui-col-xs-9{
+	width:83%;
+}
+.mui-segmented-control .mui-control-item {
+	/*line-height: 50px;*/
+	font-size:12px ;
+	width: 100%;
+}
+.mui-control-content {
+	display: block;
+}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+	background-color: none;
+}
+.mui-table-view:after{
+	height: 0
+}
+.mui-segmented-control .mui-control-item{
+	line-height: 25px
+}
+/*服务进度*/
+.service-list {
+    text-align: left;
+    background: #fff;
+    border-right: 1px solid #BFBFBF;
+	padding:10px;
+	width: ;
+}
+.mui-control-content ul{
+	padding: 0;
+}
+.service-list .progress-note {
+    padding: 10px 20px 10px 50px;
+    background: url(../img/icon14.png) no-repeat 15px 13px;
+    background-size: 25px;
+}
+.service-list .content-current h3 {
+    color: #00b5ff;
+    font-weight: normal;
+}
+.service-list .progress-title h3 {
+    font-size: 18px;
+    font-weight: normal;
+}
+.service-list .progress-note h3 {
+    font-size: 16px;
+    margin: 5px 0;
+    font-weight: normal;
+}
+.service-list li h3 {
+    margin: 5px 0 10px 0;
+}
+.service-list li p {
+    margin: 0;
+    color:#8f8f94;
+}
+.service-list li:first-child p {
+    margin: 5px 0;
+}
+
+/**/
+.progress-list{
+	top:5px;
+}
+.progress-list a:nth-child(odd) i{
+	width:20px;
+	height:20px;
+	border-radius:50%;
+	/*background:url(images/step.png) no-repeat #0a569d;*/
+	background: url(../img/1.bat);
+
+	background-position:2px 2px;
+	background-size:40px;
+	-webkit-transition: all .1s ease-in;
+}
+.mui-col-xs-3 a {
+	font-size: 10px;
+	line-height: 24px;
+	text-align: center;
+	height:40px;
+	margin:2px 0; 
+	position: relative;
+	
+}
+.mui-segmented-control.mui-segmented-control-inverted.mui-segmented-control-vertical .mui-control-item, .mui-segmented-control.mui-segmented-control-inverted.mui-segmented-control-vertical .mui-control-item.mui-active{
+	border-bottom: 0px solid #c8c7cc;
+}
+.progress-list a i {
+	display: block;
+	width: 24px;
+	margin: 0 auto;
+	position: relative;
+
+}
+.progress-list a:nth-child(odd) i{
+	width:20px;
+	height:20px;
+	border-radius:50%;
+	background:url(../img/svg/step.svg) no-repeat #0a569d;
+	background-position:2px 2px;
+	background-size:40px;
+	-webkit-transition: all .1s ease-in;
+}
+.progress-list a:first-child i{
+	background-position:2px 2px;
+}
+.progress-list a:nth-child(3) i{
+	background-position:-24px 2px;
+	background-size:43px;
+}
+.progress-list a:nth-child(5) i{
+	background-position:2px -22px;
+}
+.progress-list a:nth-child(7) i{
+	background-position:-22px -22px;
+}
+.progress-list a:nth-child(9) i{
+	background-position:2px -46px;
+}
+.progress-list a:nth-child(11) i{
+	background-position:-22px -46px;
+}
+.progress-list a:nth-child(even) {
+	
+	overflow: hidden;
+}
+.progress-list a:nth-child(even) i{
+	content: " ";
+	position: absolute;
+	top: -5px;
+	left: 50%;
+	width: 1px;
+	height: 100%;
+	z-index: 0;
+	border-left: 1px dashed #BFBFBF;
+	/*background-color: none;*/
+}
+#supplement {
+	text-align: center;
+	margin-top:10px ;
+}
+#supplement a{
+		color:#000!important
+}
+.mui-col-xs-3 a:last-child img{
+	width:20px;
+	display: block;
+	margin:0 auto;
+}
+
+.progress-list a:nth-child(even) i:before{
+	content:" ";
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin:-3px 0 0 -6px;
+	width:10px;
+	height:10px;
+	border:1px solid #0a569d;
+	border-radius:50%;
+	z-index: 2;
+	-webkit-transition: all .1s ease-in;
+}
+.progress-list a:nth-child(even) i:after{
+	content:" ";
+	position: absolute;	
+	top:50%;
+	left:50%;
+	margin:0px 0 0 -3px;
+	width:6px;
+	height:6px;
+	background: #0a569d;
+	border-radius:50%;
+	z-index: 3;
+	-webkit-transition: all .1s ease-in;
+}
+.progress-list a:last-child:after {
+	
+}
+.service-list .content-current {
+	background-color: #F7F7F7!important;
+	border-color: 1px solid #fbf0c0;
+	border-top: 2px solid #00B5FF!important;
+}
+
+.service-list .content-current h3{
+	color:#00b5ff;
+}
+.progress-list .mui-active{
+	color:#00B5FF!important
+}
+.progress-list .mui-active i{
+	background-color: #00b5ff!important;
+
+}
+.progress-list a:nth-child(even).mui-active i{
+	background-color:#fff!important;
+}
+.progress-list .mui-active i:before{
+	border:1px solid #00b5ff!important;
+}
+.progress-list .mui-active i:after{
+	background: #00b5ff!important;
+}
+.progress-list .cannot i:after{
+	background-color: #B5B5B5!important;
+}
+.progress-list .cannot:nth-child(odd) i{
+	background-color: #B5B5B5!important;
+}
+.progress-list .cannot i:before{
+	border-color:#B5B5B5!important;
+}
+.progress-list .cannot{
+	color:#B5B5B5!important;
+}
+.text-null{
+	height:0px;
+	font-size: 0
+}
+.no_content{
+	padding:0!important;
+}
+.mui-table-view:before{
+	height: 0;
+}
+.service-list ul li:first-child:before{
+	position: absolute;
+    right: 0;
+    left: 0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    background-color: #c8c7cc;
+    top:0
+}
+.progress-note-imgs img{
+	width:100%;
+}
+/*图片预览*/
+.mask_layer{
+	position: absolute;
+	width: 100%;
+	top:0;
+	bottom:0;
+	left:0;
+	background: rgba(0,0,0,0.5);
+	z-index: 9999;
+	overflow: hidden;
+	display: none;
+}
+.progress-note-imgs div{
+	display: inline-block;
+	width:30%;
+	margin-left:3%;
+	position: relative;
+	overflow: hidden;
+}
+.preview_img{
+	position: absolute!important;
+	top:0;
+	left:0;
+
+}
+.mui-loading p{
+	color:#000;
+	font-size: 14px;
+	text-align: center;
+	position: relative;
+	margin: 10px 0 0 0;
+}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+	background: none;
+}
+

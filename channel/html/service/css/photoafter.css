@@ -1,0 +1,43 @@
+html,body{height: 100%;width: 100%;}
+.mui-bar-nav ~.mui-content .mui-slider.mui-fullscreen{
+	margin-top:20px;
+	margin-bottom: 80px;
+}
+.supplement .mui-bar-nav ~.mui-content .mui-slider.mui-fullscreen{
+	margin-top:55px !important;
+}
+.device-img,.uploadimg{
+	height: auto !important;
+}
+a.mui-table-view-cell{
+	display: block;
+	width: 100%;
+	height: auto;
+	background-color:#FFF;
+	margin-top: 15px;
+	padding: 5px 5px;
+}
+a.mui-table-view-cell.mui-active{
+	background-color: #FFFFFF;
+}
+.tasks .mui-media-body h4{
+	padding: 0;
+	margin: 0;
+}
+.mui-fullscreen{
+	position: initial;
+}
+.mui-content-div{
+	bottom: 0;
+	height: 70px;
+	background-color: #FFFFFF;
+}
+.mui-content-div button{
+	top: 15px;
+	padding: 7px;
+	width: 90%;
+	margin: 0 auto;
+}
+.coustom-h3{
+	padding-left: 38% !important;
+}

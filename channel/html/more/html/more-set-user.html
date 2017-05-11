@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../../../css/mui/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css"/>
+		<link rel="stylesheet" href="../css/more.css" />
+	</head>
+	<body class="more-set-user">
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">用户管理</h1>
+		</header>
+		<div class="mui-content set_suer">
+			<div class="mui-slider-group">
+				
+				<ul id="list" class="mui-table-view user_list_chn">
+					
+				</ul>
+				<div class="mui-loading">
+					<div class="mui-spinner">
+					</div>
+				</div>
+						
+			</div>
+		</div>
+	</body>
+	<script src="../../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/plugin/js/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../../../js/mms-common.js" ></script>
+	<script type="text/javascript" src="../js/more.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+		mui.init();
+		mui.plusReady(function() {
+			mui.preload({
+				url: "more-set-user-edit.html",
+				id: 'list_page'
+			});
+			$("header").on("tap", function() {
+				plus.webview.getWebviewById('list_page').reload();
+			});
+		});
+		
+		user_query_mission(0);
+		mui("#list").on("tap", ".mui-selected a", function() {
+			var otypesarry = new Array();
+			$(this).parent().next().find("h5 i").each(function(i) {
+				//得到每个otypeskey
+				otypesarry[i] = $(this).attr("otypeskey");
+			});
+			mui.openWindow({
+				url: this.href,
+				createNew: true,
+				show: {
+					aniShow: "正在跳转",
+					aniShow:"slide-in-right",//页面显示动画，默认为”slide-in-right“；
+					duration:300
+				},
+				extras: {
+					passval_id: $(this).parents("li").attr("id"),
+					passval_name: $(this).parent().next().find("h4").text(),
+					passval_phone: $(this).parent().next().find("span").text(),
+					passval_key: otypesarry
+				}
+			});
+		})
+	</script>
+</html>

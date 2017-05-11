@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>回话聊天</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/msg-chat.css" />
+		<link rel="stylesheet" href="../../../css/plugin/imageviewer.css" />
+		<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+	<body class="msg-chat">
+		<header class="mui-bar mui-bar-nav a-link">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">会话</h1>
+		    <a class="mui-icon mui-icon-right-nav mui-pull-right msg-chat-person"></a>
+		</header>
+		<nav class="mui-bar msg-bar-session">
+			<a class="mui-icon icon-camera2"></a>
+			<input type="text" placeholder="请写信息内容,最多输入500个字" class="msg-input-box" maxlength="500" />
+			<button class="mui-btn mui-btn-link msg-btn-sends">发送</button>
+		</nav>
+		<div class="mui-content">
+			<h2 class="mui-title" id="msg-conv-title"></h2>
+			<div class="mui-scroll-wrapper" id="pullrefresh">
+				<div class="mui-scroll" id="conv_scroll">
+					
+					
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script src="../../../js/mui/mui.pullToRefresh.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mui/mui.pullToRefresh.material.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mui/mui.previewimage.js"></script>
+	<script src="../../../js/mui/mui.zoom.js"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script src="../../../js/mms-down-img.js"></script> 
+	<script src="../../../js/mms-upload-photo.js"></script> 
+	<script src="../js/msg-chat.js"></script> 
+	<script>
+		mui.init();
+
+	</script>
+
+</html>

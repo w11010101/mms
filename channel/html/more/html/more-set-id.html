@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../../../css/mui/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/more.css"/>
+		<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="more-set-id">
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">账户设置</h1>
+		</header>
+		<div class="mui-content">
+		    <form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>院校:</label>
+					<input id="school" type="text" class="custom-focus" readonly placeholder="----">
+				</div>
+				<div class="mui-input-row">
+					<label>姓名:</label>
+					<input id="name" type="text" class="custom-focus" readonly placeholder="----">
+				</div>
+				<div class="mui-input-row">
+					<label class="custom-padding">手机号:</label>
+					<input id="phone" type="text" class="custom-color" readonly placeholder="手机号">
+				</div>
+			</form>
+			<button type="button" class="mui-btn mui-btn-yellow mui-btn-block more-btn-pwd">修改密码</button>
+			<button type="button" class="mui-btn mui-btn-red mui-btn-block more-btn-quit">退出登录</button>
+		</div>
+	</body>
+	<script src="../../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../js/mms-common.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		queryElement("#school").value = getInterim.org_name;
+		queryElement("#name").value = getInterim.name;
+		queryElement("#phone").value = getInterim.phone;
+		// 修改密码
+		mui("body").on("tap",".more-btn-pwd",function(){
+			var token = localStorage.getItem("STN");
+			if(token&&token.length== 32){
+				var href = mmsappurl.more.editPWD+token;
+				var ws = plus.webview.create(href);
+				ws.show("slide-in-right");
+			}
+		})
+		// 退出登陆
+		mui("body").on("tap",".more-btn-quit",function(){
+			var clientid = plus.push.getClientInfo().clientid;
+			var sign = window.btoa(1 + "|" + getInterimID + "|" + "869158020363665"+clientid);
+			var ws = new WebSocket("ws://" + mmscuswebsocket + sign);
+			
+			var btnArray = ['否', '是'];
+			mui.confirm('退出登陆后需要重新登录，是否退出？', '新中新运维云平台客户版', btnArray, function(e) {
+				if (e.index == 1) {
+					localStorage.removeItem("STN");
+					var all = plus.webview.all();
+					for(var i in all){
+						if(all[i].id != plus.webview.currentWebview().id){
+							all[i].hide();
+						}
+					}
+					var login = plus.webview.getWebviewById("login.html");
+					login.reload(true);
+					plus.webview.getWebviewById("html/msg/html/msg.html").close();
+
+					
+//					for(var i in all){
+//						if(all[i].id.indexOf("login.html")>=0){
+//							var login = all[i];
+//							login.reload(true);
+//							plus.webview.getWebviewById("html/msg/html/msg.html").close();
+//						}else{
+//							
+//						}
+//						all[i].hide();
+//					}
+				} else {
+					// 否
+				}
+			})
+		})
+	</script>
+	
+</html>

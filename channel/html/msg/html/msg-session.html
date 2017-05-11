@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../../../css/mui/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/msg-session.css" />
+		<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body class="msg-session mui-fulls1creen">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left">取消</a>
+			<h1 class="mui-title">标题</h1>
+			<a class="mui-btn mui-btn-link msg-send mui-pull-right msg-create-btn" href="msg-chat.html"></a>
+		</header>
+		<div class="mui-content">
+			<input type="text" placeholder="请输入主题，最多输入20个字" class="msg-session-input" maxlength="20" />
+			<div class="mui-input-group">
+				<div class="mui-input-row">
+					<label>会话人:</label>
+					<ul tabindex="0" class="msg-participants" onfocus="participants_focus(this);" onblur="participants_blur(this);">
+						
+					</ul>
+					<a href="../../msg/html/msg-mailList.html" class="mui-icon msg-participants-add"></a>
+				</div>
+			</div>
+		</div>
+		<script src="../../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mms-common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/msg-session.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		</script>
+	</body>
+
+</html>

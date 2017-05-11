@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>新中新运维云平台-渠道版-发布</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css" />
+		<link rel="stylesheet" href="../css/more.css" />
+	</head>
+
+	<body class="select">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">发布</h1>
+			<a id="note_select" class="mui-btn mui-btn-link mui-pull-right">发布</a>
+		</header>
+
+		<div class="mui-content">
+			<h4></h4>
+			<ul id="otype" class="mui-table-view mui-table-view-radio">
+				
+			</ul>
+		</div>
+	</body>
+
+	<script type="text/javascript" src="../../../js/mui/mui.min.js" ></script>
+	<script type="text/javascript" src="../../../js/plugin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../js/mms-common.js" ></script>
+	<script type="text/javascript" src="../../../js/plugin/js/artEditor.min.js" ></script>
+	<script type="text/javascript" src="../js/arteditor.js" ></script>
+	<script type="text/javascript" src="../js/more.js" ></script>
+	<script>
+		mui.init({
+			beforeback: function(){
+				//获得列表界面的webview
+				var list = plus.webview.getWebviewById('pullrefresh_sub.html');
+				//触发列表界面的自定义事件（refresh）,从而进行数据刷新
+				mui.fire(list,'refresh');
+				//返回true，继续页面关闭逻辑
+				return true;
+			}
+		});
+		mui.plusReady(function() {
+			var values = plus.webview.currentWebview();
+			var getType = values.passval_title;
+			var getid = values.passval_id;
+			var get_public = values.passval_public;
+			$(".mui-content h4").text(getType);
+			$("#note_select").on("tap", function() {
+				var select_val = $("#otype li").attr("class");
+				if($(".mui-selected").attr("id")==""||$(".mui-selected").attr("id")==undefined){
+					mui.toast("请点选发布位置");
+				}else{
+					if(get_public == "true") {
+						var btnArray = ['确认', '取消'];
+						mui.confirm('此笔记已经发布到知识库，继续发布将覆盖之前版本，是否确定重新发布？', '新中新运维云平台', btnArray, function(e) {
+							if(e.index == 0) {
+								note_library_mission(getid);
+							} else {
+								setTimeout(function() {
+									mui.toast("已取消发布");
+								}, 0);
+							}
+						});
+					} else {
+						note_library_mission(getid);
+					};
+				}			
+			});
+		});
+		by_pid_atype_mission();
+	</script>
+
+</html>

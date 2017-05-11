@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新中新运维云平台-客户版-会话信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+		<link rel="stylesheet" href="../../../css/mms-common.css">
+		<link rel="stylesheet" type="text/css" href="../css/msg-chat.css" />
+		<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="msg-chat-title" chat_id="" class="mui-title">会话信息</h1>
+		</header>
+		<div class="mui-content">
+			<ul id="msg-chat-persons" class="mui-table-view mui-grid-view mui-grid-9">
+				
+				<div class="mui-loading">
+					<div class="mui-spinner">
+					</div>
+				</div>
+			</ul>
+			<ul class="mui-table-view mui-table-view-chevron">
+				<li class="mui-table-view-cell">
+					<a href="#about">主题 <i class="mui-pull-right">运维云平台</i></a>
+				</li>
+			</ul>
+			<button type="button" id="msg-chat-exit" class="mui-btn mui-btn-green mui-btn-block">删除并退出</button>
+		</div>
+		<script src="../../../js/mui/mui.min.js"></script>
+		<script src="../../../js/mms-common.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				var value = plus.webview.currentWebview();
+				var chat_id = value.chatId;
+				queryElement(".mui-pull-right").innerHTML = value.chatTitle;
+				queryElement("#msg-chat-title").setAttribute("chat_id", chat_id);
+				getPersons(chat_id);
+			})
+
+			var persons = queryElement("#msg-chat-persons");
+			var loading = queryElement(".mui-loading");
+			//进入添加会话人列表页	
+			function infotap() {
+				mui("ul").on("tap", "#info-user-add", function() {
+					
+					// page_source_ide :页面来源
+					var parameter =  {
+						page_source_ide: "add_person", 
+						msg_chat_id: queryElement("#msg-chat-title").getAttribute("chat_id") 
+					}
+					jump(this.getAttribute("href"),parameter);
+
+				})
+			}
+			//****************************** info-user ++++++++++++ 消息——会话信息 *****************************************//
+			function getPersons(chat_id) {
+				var urls = mmsappurl.msg.chatPerson;
+				var datas = {
+					id: chat_id
+				}
+				getAjax(urls, datas, get_receivers_list_success, error_back);
+			}
+
+			function createPerson(data) {
+				var createLi = createElement("li");
+				createLi.classList.add("mui-table-view-cell", "mui-media", "mui-col-xs-4", "mui-col-sm-3");
+				createLi.innerHTML = '<span class="mui-icon msg-chat-person-header"></span><div class="mui-media-body">' + data.receiver;
+				return createLi;
+
+			}
+
+			function get_receivers_list_success(data) {
+				mui("#msg-chat-title")[0].innerHTML = "会话信息（" + data.data.length + "人）";
+				if(data.errcode == 0 && data.data != "") {
+					var getData = data.data;
+					for(var x = 0; x < getData.length; x++) {
+						var dom = createPerson(getData[x]);
+						persons.insertBefore(dom, loading);
+					}
+					queryElement(".mui-loading").style.display = "none";
+					//加号
+					persons.appendChild(createPersonPlus());
+					infotap();
+				} else {
+					
+					mui.toast("获取数据失败")
+				}
+
+			}
+
+			function createPerson(data) {
+				var createLi = createElement("li");
+				createLi.classList.add("mui-table-view-cell", "mui-media", "mui-col-xs-4", "mui-col-sm-3");
+				createLi.innerHTML = '<span class="mui-icon msg-chat-person-header"></span><div class="mui-media-body">' + data.receiver;
+				return createLi;
+
+			}
+
+			function createPersonPlus(data) {
+				var createLi = createElement("li");
+				createLi.classList.add("mui-table-view-cell", "mui-media", "mui-col-xs-4", "mui-col-sm-3");
+				createLi.innerHTML = '<a id="info-user-add" class="" mback="info-user" href="msg-mailList.html"><span class="mui-icon msg-chat-person-add"></span></a>';
+				return createLi;
+			}
+
+			function error_back(err) {
+				
+			}
+
+			// 退出会话组
+			mui("body").on("tap", "#msg-chat-exit", function() {
+				var urls = mmsappurl.msg.exitChat;
+				var datas = {
+					sid: queryElement("#msg-chat-title").getAttribute("chat_id"),
+					receiver_id: getInterimID
+				}
+				var btnArray = ['否', '是'];
+				mui.confirm('你确定要退出该会话组？', '退出会话', btnArray, function(e) {
+					if(e.index == 1) {
+						// 是
+						
+						getAjax(urls, datas, exit_chat_success, error_back);
+					} else {
+						// 否
+						
+					}
+				})
+				// 退出回话组，同时删除本地存储的该条记录
+				function exit_chat_success(data){
+					if(!data.errcode){
+						mui.toast("退出成功");
+						var localObj = JSON.parse(localStorage.getItem(getInterimID+"-chatList"));
+						if(localObj){
+							for(var y = 0;y< localObj.length;y++){
+								if(queryElement("#msg-chat-title").getAttribute("chat_id") == localObj[y].id){
+									localObj.splice(y,1);
+								}
+							}
+						}
+						localStorage.setItem(getInterimID+"-chatList",JSON.stringify(localObj));
+						var currentW = plus.webview.currentWebview();
+						var prevW = currentW.opener();
+							prevW.opener().reload(true);
+							prevW.close();
+							old_back();
+					}
+				}
+
+				function error_back(data) {
+					
+				}
+			})
+		</script>
+	</body>
+
+</html>

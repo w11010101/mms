@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	<title>Hello MUI</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="misapplication-tap-highlight" content="no" />
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="MobileOptimized" content="320" />
+	<!--标准mui.css-->
+	<link rel="stylesheet" href="../../../css/mui/mui.min.css">
+	<link rel="stylesheet" href="../../../css/mms-common.css">
+	<link rel="stylesheet" href="../css/msg-main.css">
+	<link rel="stylesheet" href="../css/msg-check.css" />
+	<script src="../../../js/mms-common-link.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		.coustom-2 {
+			width: 50%;
+		}
+		
+		#item2mobile .mui-pull-bottom-tips,
+		#item2mobile .mui-loading {
+			display: none;
+		}
+	</style>
+
+	<body class="msg">
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">消息</h1>
+			<a id="msg-edit-notice" class="mui-right">编辑</a>
+			<a class="mui-icon icon-filter mui-pull-right" href="#topPopover"></a>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active">
+				<span class="mui-icon icon-bar-news"></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item" href="../../service/html/service.html">
+				<span class="mui-icon icon-bar-service">
+					
+				</span>
+				<span class="mui-tab-label">服务</span>
+			</a>
+			<em class="mui-tab-item mms-sectors-nav">
+				<i class="mms-screen-mask"></i>
+				<span class="btn-menu"><i class="icon-plus"></i></span>
+				<a href="../../../plugin/html/pullrefresh_main.html" id="mms-sectors-nav-1" class="" type = "note" page_name="笔记">
+					<span>
+						<i class="mui-icon icon-bar-note"></i>
+					</span>笔记
+				</a>
+				<a href="../../../plugin/html/pullrefresh_main.html" id="mms-sectors-nav-3" class="" type = "draft" page_name="服务">
+					<span>
+						<i class="mui-icon icon-bar-task"></i>
+					</span>服务
+				</a>
+				<!--<a href="../../msg/html/msg-session.html" id="mms-sectors-nav-3">
+					<span>
+						<i class="mui-icon icon-bar-chat"></i>
+					</span>会话
+				</a>-->
+			</em>
+			<a class="mui-tab-item" href="../../statistic/html/statistic.html">
+				<span class="mui-icon icon-bar-statistic"></span>
+				<span class="mui-tab-label">统计</span>
+			</a>
+			<a class="mui-tab-item" href="../../more/html/more.html">
+				<span class="mui-icon icon-bar-more"></span>
+				<span class="mui-tab-label">更多</span>
+			</a>
+		</nav>
+
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<!--<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#item1mobile">公告</a>
+						<a class="mui-control-item" href="#item2mobile">会话</a>
+					</div>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4 coustom-2"></div>-->
+				<div class="mui-slider-group">
+					<!-- 公告列表 -->
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view mui-input-group" id="msg-list">
+									
+								</ul>
+								<div class="mui-loading">
+									<div class="mui-spinner"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 会话列表 -->
+					<!--<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view msg-session-lists">
+
+								</ul>
+								<div class="mui-loading">
+									<div class="mui-spinner"></div>
+								</div>
+							</div>
+						</div>
+					</div>-->
+				</div>
+			</div>
+			<div class="msg-coustom-boot">
+				<div id="msg-changeinput" class="mui-input-row mui-checkbox mui-left">
+					<label>全选</label>
+					<input name="checkbox" type="checkbox">
+				</div>
+				<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined msg-del-btn">
+		          	<span class="mui-icon"></span>删除
+		    	</button>
+			</div>
+		</div>
+	</body>
+	<script src="../../../js/mui/mui.min.js"></script>
+	<script src="../../../js/mms-common-back.js"></script>
+	<script src="../../../js/mui/mui.view.js"></script>
+	<script src="../../../js/mui/mui.pullToRefresh.js"></script>
+	<script src="../../../js/mui/mui.pullToRefresh.material.js"></script>
+	<script src="../../../js/mui/mui.lazyload.js"></script>
+	<script src="../../../js/mui/mui.lazyload.img.js"></script>
+	<script src="../../../js/mui/mui.previewimage.js"></script>
+	<script src="../../../js/mui/mui.zoom.js"></script>
+	<script src="../../../js/mms-common.js"></script>
+	<script src="../../../js/mms-nav.js"></script>
+	<script src="../js/msg-check.js"></script>
+	<script src="../js/msg-main.js"></script>
+	<script>
+		mui.init({
+			gestureConfig: {
+				tap: true, //默认为true
+				doubletap: true, //默认为false
+				longtap: true, //默认为false
+				// swipe: true, //默认为true
+				// drag: true, //默认为true
+				//		 hold:true,//默认为false，不监听
+				// release:false//默认为false，不监听
+			}
+		})
+		mui.plusReady(function() {
+			mui(".mui-card").on("tap", "a", function() {
+				if(this.href && ~this.href.indexOf(".html")) {
+					if(this.getAttribute("href") == "service.html") {
+						jump(this.href,{
+							service_state: this.getAttribute("id")
+						});
+					} else {
+						jump(this.href);
+					}
+					localStorage.setItem("message-title", this.innerText);
+				}
+			})
+			if(plus.os.name == "iOS") {
+				plus.navigator.setStatusBarBackground('#0A569D');
+				plus.navigator.setStatusBarStyle('UIStatusBarStyleBlackOpaque');
+			} else {
+				plus.navigator.setStatusBarBackground('#0A569D');
+			}
+		})
+		// 公告列表
+		messages("down");
+		msg_list_tap("messages");
+	</script>
+
+</html>

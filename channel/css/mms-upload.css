@@ -1,0 +1,275 @@
+
+.mask-box {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	background: rgba(96, 96, 96, 0);
+	-webkit-transition: background .3s ease-in-out;
+}
+
+.mask-box-show {
+	background: rgba(96, 96, 96, 0.6);
+}
+
+.mask-box-hide {
+	background: rgba(96, 96, 96, 0);
+}
+
+.mask-content {
+	width: 80%;
+	display: inline-block;
+	background: #fff;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -25% 0 0 -40%;
+	opacity: 1;
+	-webkit-transform: scale(1.2);
+	-webkit-transition: All 0.3s ease-in-out;
+}
+
+.mask-box-show .mask-content {
+	-webkit-transform: scale(1);
+	opacity: 1;
+}
+
+.mask-box-hide .mask-content {
+	-webkit-transform: scale(1.2);
+	opacity: 0;
+}
+
+.mask-content h3 {
+	text-align: center;
+	font-size: 15px;
+	height: 45px;
+	line-height: 45px;
+	position: relative;
+	border-bottom: 1px solid #e3e3e3;
+	background: #f9f9f9;
+	margin: 0;
+	font-weight: normal;
+}
+
+.mask-content button,.mask-content input {
+	display: block;
+	border: 0;
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	text-align: left;
+	padding: 0 20px;
+	border-radius: 0;
+}
+
+.mask-content button:last-child,.mask-content input:last-child  {
+	border-top: 1px solid #e3e3e3;
+}
+ul,li{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+.uploadimg {
+	/*height: auto!important;*/
+	min-height: 120px;
+	padding: 10px 0;
+	width: 98%;
+	margin: 0 1%;
+}
+
+.device-img {
+	height: 100%;
+	margin: 0 15px;
+	font-size: 0;
+	overflow-y: scroll;
+}
+
+.device-img li span {
+	overflow: hidden;
+	width: 100%;
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
+}
+/*.session .device-img li,
+.needs .device-img li,
+.repair .device-img li,
+.ser-illustrate .device-img li {*/
+.device-img li {
+	width: 27.33%;
+	margin: 3%;
+	display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.device-img li img {
+    width: 100%!important;
+    height: 100%!important;
+    /*clip: rect( 0, 100px, 100px, 0);*/ 
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.device-img li i {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url(../img/icon-close.png) no-repeat center;
+    background-size: 10px;
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+
+.upload-box {
+	width: 100px;
+	/* height: 100px; */
+	background: url(../img/svg/icon-camera.svg) no-repeat center center;
+	background-size: 30px 30px;
+	display:block;
+	position: relative;
+	padding-bottom: 100%;
+}
+.upload-box:before {
+	position: absolute;
+	content: '';
+	top: -1px;
+	right: -1px;
+	left: -1px;
+	bottom: -1px;
+	border: 1px dashed #ccc;
+}
+
+
+
+.ser-illustrate .mui-content>.checkboxs,
+.ser-illustrate .ser-textarea,
+.ser-illustrate .mui-control-content {
+	background: #fff;
+}
+
+.device-img .upload-exception {
+	border: 1px dashed #ccc;
+}
+/*.repair .device-img li:last-child,
+.needs .device-img li:last-child,
+.ser-illustrate .device-img li:last-child {*/
+.device-img li:last-child{
+	border: 0;
+	font-size:15px;
+}
+.ser-textarea textarea {
+    border: none;
+    max-height: 80px;
+    margin: 0;
+}
+.device-img .pre-text {
+    /*width: 40%!important;*/
+    color: #C0C0C0;
+}
+
+[class*="icon-"] {
+    position: relative;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.icon-close {
+    background-color: #f9f9f9;
+    background-position: center center;
+    background-image: url(../img/icon-close.png);
+    background-size: 15px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 44px;
+}
+.mask-layer{
+	background: rgba(96, 96, 96, 0.6);
+	z-index: 49;
+}
+.mask-content button, .mask-content input {
+    display: block;
+    border: 0;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    text-align: left;
+    padding: 0 20px;
+    border-radius: 0;
+}
+.mask-content button:last-child, .mask-content input:last-child {
+    border-top: 1px solid #e3e3e3;
+}
+.mui-content-div {
+    position: fixed;
+    bottom: 20px;
+    width: 90%;
+    height: 40px;
+    z-index: 10;
+}
+.icon-close-active {
+	background-color: #c1c1c1;
+}
+.mui-navigate-right label,.mui-navigate-right input,textarea,input{
+	font-size: 15px;
+}
+.mui-input-group {
+	margin-bottom: 20px;
+    height: 100%;
+}
+.mui-input-group h5{
+	margin: 0;
+	line-height: 21px;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight: normal;
+    color: #5e5e5e;
+}
+.mui-input-group .mui-input-row:last-child:after{
+	height: 0px;
+}
+
+.mui-input-group .mui-input-row{
+	height: auto;
+}
+.ser-textarea{
+	position: absolute;
+	top:230px;
+	bottom: 0;
+	width: 100%;
+}
+.ser-illustrate .ser-textarea{
+	position: absolute;
+	top:80px;
+	bottom: 0;
+	width: 100%;
+}
+.ser-textarea .uploadimg{
+	position: absolute;
+	top:120px;
+	bottom: 0px;
+	
+}
+/*
+ * 渠道版 的任务提交单独样式
+ */
+.chm-ser-submit .mui-scroll-wrapper{
+	top:44px;
+}
+.chm-ser-submit #slider,.chm-ser-submit .ser-textarea,.chm-ser-submit .ser-textarea .uploadimg{
+	position: static;
+}
+.mui-slider .mui-slider-group{
+	white-space: normal
+}

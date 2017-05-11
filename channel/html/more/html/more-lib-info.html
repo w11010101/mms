@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../../css/mui/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/mms-common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/more.css"/>
+	</head>
+	<body class="more-lib-info">
+		<header class="mui-bar mui-bar-nav a-link">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">知识库详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="more-lib-info-text">
+				<div class="more-lib-info-title">
+					<input disabled="disabled" type="text" placeholder="标题">
+					<i id="more-lib-info-time">----</i>
+				</div>
+				<div class="more-lib-info-content">
+					<input disabled="disabled" type="hidden" id="more-lib-info-target">
+					<div class="article-content" id="content">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="../../../js/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/plugin/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/plugin/js/artEditor.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mms-common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/more.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#content').artEditor({
+					imgTar: '#imageUpload',
+					limitSize: 5,   // 兆
+					showServer: false,
+					uploadUrl: '',
+					data: {},
+					uploadField: 'image',
+					placeholader: '<p>请输入文章正文内容</p>',
+					validHtml: ["<br/>"],
+					formInputId: 'target',
+					uploadSuccess: function(res) {
+						return res.path;
+					},
+					uploadError: function(res) {
+					}
+				});
+			});
+			
+		</script>
+	</body>
+</html>

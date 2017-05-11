@@ -1,0 +1,39 @@
+input[type="text"]{
+	color: #5e5e5e;
+}
+#item1mobile .mui-input-group .input-row-textarea, #item3mobile .mui-input-group .input-row-textarea{
+	top: 0 !important;
+}
+.mui-input-group .input-row-textarea{
+	position: inherit;
+}
+#item2mobile .mui-input-group .input-row-textarea{
+	top: 0 !important;
+}
+.openPopover{
+	display: block;
+	width: 100%;
+	margin-bottom: 0;
+    padding-left: 0;
+    border: 0;
+    line-height: 40px;
+    font-size: 15px;
+    color: #5e5e5e;
+}
+#popover{
+	height: 300px;
+	width:90%;
+}
+#popover li{
+	height: 60px;
+	line-height: 44px;
+}
+.mui-popover .mui-table-view,.mui-popover .mui-table-view .mui-table-view-cell{
+	background-color:#f7f7f7;
+}
+.mui-popover .mui-table-view .mui-table-view-cell> a:not(.mui-btn){
+	    padding: 10px 15px;
+}
+#coustom-xt_1,#coustom-xt{
+	padding-right: 30px;
+}

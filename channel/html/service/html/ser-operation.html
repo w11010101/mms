@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../css/mms-common.css" />
+		<style type="text/css">
+			.mui-card-footer:before {
+				background-color: #FFFFFF;
+			}
+			
+			.coustom-btn {
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				height: 60px;
+				padding-top: 10px;
+				z-index: 10;
+			}
+			
+			.coustom-btn .mui-btn-block {
+				padding: 6px 0;
+				width: 90%;
+				margin: 0 auto;
+			}
+			
+			.mui-content>div:last-child {
+				margin-bottom: 70px;
+			}
+			
+			.mui-card-header {
+				font-size: 15px;
+			}
+			
+			.coustom-a .mui-table-view-cell a {
+				white-space: inherit;
+				padding-right: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">服务</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group coustom-btn">
+				<button type="button" class="mui-btn mui-btn-green mui-btn-block">按钮</button>
+			</div>
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<img id="icon" src="" />
+					<div class="mui-media-body">
+						<i id="name"></i>
+						<p id="time"></p>
+					</div>
+				</div>
+				<div class="mui-card-content coustom-a">
+					<div class="mui-table-view-cell">
+						<a id="title" style="" class="mui-navigate-right" href="#"></a>
+					</div>
+					<div id="content" style="word-break:break-all;word-wrap:break-word;" class="mui-card-footer"></div>
+				</div>
+			</div>
+			<div id="people" class="mui-card">
+				<div class="mui-card-header mui-card-footer mui-media-body">
+					任务分配人员
+				</div>
+				<div class="mui-card-content">
+					<div id="otype_allot_list" class="checkboxs coustom-bar-border">
+
+					</div>
+				</div>
+			</div>
+			<div id="priority" class="mui-card">
+				<div class="mui-card-header mui-card-footer mui-media-body">
+					优先级一级为最高优先级
+				</div>
+				<div class="mui-card-content">
+					<ul class="mui-table-view mui-table-view-radio">
+						<li class="mui-table-view-cell coustom-bar-border">
+							<a level="1" class="mui-navigate-right">
+								优先级一级
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-selected">
+							<a level="2" class="mui-navigate-right">
+								优先级二级
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a level="3" class="mui-navigate-right">
+								优先级三级
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a level="4" class="mui-navigate-right">
+								优先级四级
+							</a>
+						</li>
+						<li class="mui-table-view-cell">
+							<a level="5" class="mui-navigate-right">
+								优先级五级
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="../../../js/mui/mui.min.js"></script>
+		<script type="text/javascript" src="../../../js/plugin/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../js/mms-common.js"></script>
+		<script type="text/javascript" src="../js/service.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//所选择的任务级别
+			var namevalue = document.querySelectorAll("#priority .mui-selected a").item(0).getAttribute("level");
+			mui('#priority').on('tap', '.mui-table-view-cell', function() {
+				setTimeout(function() {
+					namevalue = document.querySelectorAll("#priority .mui-selected a").item(0).getAttribute("level");
+				}, 300)
+			});
+
+			mui.plusReady(function() {
+				var values = plus.webview.currentWebview();
+				//任务id
+				var getType = values.passval_id;
+				var getState = values.icon;
+				var getTitle = values.title;
+				console.log(values.passval_id)
+				document.getElementById("title").innerText = getTitle;
+				//根据任务状态，显示相应logo  按钮名字  优先级以及分配人员
+				switch(getState) {
+					case "1":
+						document.getElementById("icon").setAttribute("src", "../img/icon6.png");
+						document.querySelector(".coustom-btn button").innerText = "受理";
+						document.getElementById("people").style.display = "none"
+						break;
+					case "2":
+						document.getElementById("icon").setAttribute("src", "../img/icon7.png");
+						document.querySelector(".coustom-btn button").innerText = "分配";
+						allot_by_org_otype();
+						break;
+					case "4":
+						document.getElementById("icon").setAttribute("src", "../img/icon8.png");
+						document.querySelector(".coustom-btn button").innerText = "执行";
+						document.getElementById("people").style.display = "none";
+						document.getElementById("priority").style.display = "none"
+						break;
+
+					default:
+						document.querySelector(".mui-content").innerHTML = "<p style='margin: 20% 0 0 35%;'>网络连接错误</p>"
+
+				}
+				//查询接口 显示内容 人名 时间等数据
+				service_mission(getType);
+
+				//点击按钮执行提交操作
+				document.querySelector(".coustom-btn button").addEventListener("tap", function() {
+					switch(getState) {
+						case "1":
+							service_accept_mission(getType, namevalue);
+							break;
+						case "2":
+							var val = ""; //获取页面执行者id
+							var next = $(".checkboxs").find(".checked");
+							$.each(next, function(i, e) {
+								if(i == next.length - 1) {
+									val += $(e).attr("libId");
+								} else {
+									val += $(e).attr("libId") + "|";
+								}
+							});
+							if(val == "") {
+								$(".mask-layer").hide(0);
+								mui.toast("请选择执行人")
+							} else {
+								service_allot_mission(getType, val, namevalue);
+							}
+							break;
+						case "4":
+							service_aexecute_start(getType);
+							break;
+						default:
+					}
+				})
+			});
+		</script>
+	</body>
+
+</html>
